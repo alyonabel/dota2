@@ -27,7 +27,10 @@ function Header({ book }: { book: () => void }) {
   const location = useLocation()
   useEffect(() => setOpen(false), [location])
   return <header className={styles.header}>
-    <Link className={styles.logo} to="/" aria-label="Ardjuna home"><span>A</span>RDJUNA</Link>
+    <Link className={styles.logo} to="/" aria-label="Ardjuna home">
+      <img src={`${import.meta.env.BASE_URL}assets/images/secrets-logo.svg`} alt="" />
+      <span>ARDJUNA</span>
+    </Link>
     <button className={styles.menuToggle} onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Toggle menu"><i /><i /></button>
     <nav className={open ? styles.navOpen : ''} aria-label="Main navigation">
       {nav.map(([label, path]) => <NavLink key={path} to={path}>{label}</NavLink>)}
@@ -39,28 +42,23 @@ function Header({ book }: { book: () => void }) {
 function Home({ book }: { book: () => void }) {
   return <main>
     <section className={styles.hero}>
-      <div className={styles.heroStrips} aria-hidden="true">
-        <i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i />
-      </div>
+      <video className={styles.heroVideo} autoPlay muted loop playsInline aria-label="Dota 2 cinematic background">
+        <source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" />
+      </video>
       <div className={styles.heroContent}>
-        <img src={`${import.meta.env.BASE_URL}assets/images/secrets-logo.svg`} alt="Secrets of Dota" />
         <div className={styles.heroTitle}>
-          <h1><span>«SECRETS»</span><small>OF</small><span>DOTA</span></h1>
+          <h1>“Secrets” <span>of Dota</span></h1>
           <p>The only thing in life achieved without effort is failure</p>
         </div>
       </div>
+      <a className={styles.scroll} href="#story">Discover <i /></a>
     </section>
 
-    <section className={styles.film}>
-      <div className={styles.sectionNumber}>01 / STORY</div>
-      <div className={styles.videoPlaceholder} aria-label="Video placeholder">
-        <button aria-label="Play video"><span>▶</span></button>
-        <p>VIDEO COMING SOON</p>
-      </div>
-      <div className={styles.statement}>
-        <p>Victory is never accidental.</p>
-        <h2>EVERY MOVE HAS<br /><em>A REASON.</em></h2>
-        <p className={styles.copy}>Learn to read the map, understand the tempo, and make decisions with confidence. The difference between playing and improving starts here.</p>
+    <section className={styles.story} id="story">
+      <span className={styles.eyebrow}>01 / Our story</span>
+      <div className={styles.storyGrid}>
+        <h2>DOTA IS<br /><em>MORE THAN<br />A GAME.</em></h2>
+        <p>В 2011 году на выставке GamesCom в Кёльне состоялся первый международный турнир по Доте 2. До этого периода численность игроков не превышала 20 тысяч, после чего их количество возросло. Несмотря на то, что эта игра не воспринималась всерьёз, общими усилиями она получила международное признание. Со временем каждый научился формировать собственный взгляд на игру, что послужило причиной для серьёзных разногласий и беспрецедентной критики чужих идей. Подвергнув анализу многочисленные суждения мы заметили, что игроки основывались на личном убеждении, не принимая во внимание научные методы. На основе текущих результатов становится ясно, что отбросив осуждения, мы сможем повысить уровень взаимодействия с союзниками, что поспособствует развитию. Самосознание и готовность преодолеть эти противоречия позволит увидеть игру в новом свете и повысить навыки командной игры, от простых комбинаций до более сложных. Это толкование даёт нам возможность пересмотреть свои выводы, которые будут определять нашу коллективную способность разрешить мнимые разногласия и взглянуть на проблему в её полноценной структуре.</p>
       </div>
     </section>
 
