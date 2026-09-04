@@ -39,13 +39,16 @@ function Header({ book }: { book: () => void }) {
 function Home({ book }: { book: () => void }) {
   return <main>
     <section className={styles.hero}>
-      <div className={styles.runes} aria-hidden="true"><b>◆</b><b>⌁</b><b>◈</b><b>△</b><b>✦</b></div>
-      <div className={styles.heroContent}>
-        <span className={styles.eyebrow}>Ardjuna · Dota 2 coaching</span>
-        <h1><span>SECRETS</span><small>OF</small><span>DOTA</span></h1>
-        <p>See the game differently.</p>
+      <div className={styles.heroStrips} aria-hidden="true">
+        <i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i />
       </div>
-      <div className={styles.scroll}>SCROLL TO EXPLORE <i /></div>
+      <div className={styles.heroContent}>
+        <img src={`${import.meta.env.BASE_URL}assets/images/secrets-logo.svg`} alt="Secrets of Dota" />
+        <div className={styles.heroTitle}>
+          <h1><span>«SECRETS»</span><small>OF</small><span>DOTA</span></h1>
+          <p>The only thing in life achieved without effort is failure</p>
+        </div>
+      </div>
     </section>
 
     <section className={styles.film}>
