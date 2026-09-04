@@ -9,16 +9,20 @@ nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current
 .navButton,.primary { border: 1px solid rgba(203,226,231,.7); background: transparent; text-transform: uppercase; font: 600 13px 'Rajdhani',sans-serif; letter-spacing: .12em; cursor: pointer; padding: 14px 19px; }
 .navButton span { color: $ice; margin-left: 14px; }
 .menuToggle { display:none; background:none; border:0; }
-.hero { height: min(930px,100vh); min-height: 670px; position: relative; overflow: hidden; display: grid; place-items: center; background: radial-gradient(circle at 58% 45%, rgba(51,75,81,.35), transparent 24%), linear-gradient(105deg, rgba(6,9,11,.98) 0%,rgba(11,16,20,.8) 50%,rgba(8,11,14,.98) 100%); }
-.hero:before { content:''; position:absolute; inset:92px 0 0; opacity:.16; background: repeating-linear-gradient(90deg, transparent 0 7.8vw, rgba(132,190,204,.38) 7.9vw 8vw), repeating-linear-gradient(0deg, transparent 0 109px, rgba(255,255,255,.08) 110px 111px); transform: perspective(900px) rotateX(4deg); }
-.hero:after { content:''; position:absolute; width:640px; height:640px; border:1px solid rgba(151,204,216,.08); border-radius:50%; box-shadow:0 0 0 90px rgba(151,204,216,.025),0 0 0 180px rgba(151,204,216,.02); }
-.runes { position:absolute; inset:20% 7%; display:flex; justify-content:space-between; align-items:center; color:rgba(165,205,214,.11); font-size:clamp(60px,8vw,130px); transform:rotate(-6deg); }
-.runes b:nth-child(even) { align-self:flex-end; color:rgba(143,45,50,.12); }
-.heroContent { z-index:2; text-align:center; margin-top:55px; }
+.hero { height:clamp(358px,35vw,530px); min-height:358px; padding-top:92px; position:relative; overflow:hidden; display:grid; place-items:center; background:#13191c; }
+.hero:before { content:''; position:absolute; inset:92px 0 0; z-index:1; background:linear-gradient(90deg,rgba(5,8,10,.68),rgba(17,24,27,.42) 50%,rgba(5,8,10,.68)),linear-gradient(0deg,rgba(3,5,6,.28),rgba(3,5,6,.15)); }
+.hero:after { content:''; position:absolute; inset:92px 0 0; z-index:1; background:repeating-linear-gradient(90deg,transparent 0 calc(8.33% - 1px),rgba(255,255,255,.08) calc(8.33% - 1px) 8.33%); }
+.heroStrips { position:absolute; inset:92px 0 0; display:grid; grid-template-columns:repeat(12,1fr); gap:3px; transform:scale(1.04) skewX(-1deg); }
+.heroStrips i { background:linear-gradient(145deg,#1b252b 0%,#4a292b 34%,#10181c 70%,#24333a); filter:saturate(.65); }
+.heroStrips i:nth-child(3n+1) { background:linear-gradient(160deg,#29383d,#15191c 35%,#5a3635 65%,#172127); }
+.heroStrips i:nth-child(3n+2) { background:linear-gradient(20deg,#151b1f,#334b54 45%,#21191a 47%,#492e31); }
+.heroContent { width:min(1080px,78vw); z-index:2; display:grid; grid-template-columns:140px 1fr; align-items:center; gap:55px; margin-top:16px; }
+.heroContent>img { width:140px; filter:drop-shadow(7px 7px 2px rgba(255,255,255,.16)); }
+.heroTitle { text-align:center; }
 .eyebrow { display:block; font:600 12px 'Rajdhani',sans-serif; letter-spacing:.28em; text-transform:uppercase; color:$ice; margin-bottom:24px; }
-.hero h1 { margin:0; display:grid; grid-template-columns:auto 45px auto; align-items:center; font:600 clamp(74px,11vw,170px)/.75 'Teko',sans-serif; letter-spacing:.035em; filter:drop-shadow(4px 0 0 rgba(155,43,48,.55)) drop-shadow(-3px 0 0 rgba(65,151,172,.45)); }
-.hero h1 small { font:500 23px 'Rajdhani',sans-serif; letter-spacing:.08em; }
-.heroContent>p { margin:37px 0 0; color:#b9c1c4; font:500 clamp(19px,2vw,28px) 'Rajdhani',sans-serif; letter-spacing:.12em; text-transform:uppercase; }
+.hero h1 { margin:0; display:grid; grid-template-columns:auto 55px auto; align-items:center; white-space:nowrap; font:500 clamp(69px,7.3vw,110px)/.78 'Teko',sans-serif; letter-spacing:.015em; filter:drop-shadow(4px 0 0 rgba(155,43,48,.75)) drop-shadow(-3px 2px 0 rgba(65,151,172,.65)); }
+.hero h1 small { font:500 25px 'Rajdhani',sans-serif; letter-spacing:.03em; }
+.heroTitle>p { margin:62px 0 0; color:#fff; font:600 clamp(21px,2.1vw,32px)/1.1 Georgia,serif; filter:drop-shadow(3px 0 0 rgba(155,43,48,.9)) drop-shadow(-2px 2px 0 rgba(65,151,172,.85)); }
 .scroll { position:absolute; z-index:2; bottom:30px; font:600 10px 'Rajdhani'; letter-spacing:.22em; color:#717d81; display:flex; flex-direction:column; gap:12px; align-items:center; }
 .scroll i { width:1px; height:28px; background:$ice; }
 .film { background:#11161a; padding:110px 5.5vw 140px; position:relative; }
@@ -57,7 +61,7 @@ nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current
 @media(max-width:760px) {
  .header { height:74px; padding:0 20px; }.menuToggle { display:grid; gap:7px; padding:12px; }.menuToggle i { width:24px; height:1px; background:#fff; }
  nav { display:none; position:absolute; top:74px; left:0; right:0; padding:30px; background:#090d10; flex-direction:column; align-items:flex-start; }.navOpen { display:flex; }
- .hero { min-height:620px; }.hero:before { inset:74px 0 0; }.hero h1 { grid-template-columns:1fr; font-size:25vw; line-height:.65; }.hero h1 small { margin:12px; }.runes { opacity:.5; }
+ .hero { height:auto; min-height:470px; padding:110px 20px 42px; }.hero:before,.hero:after,.heroStrips { inset:74px 0 0; }.heroContent { width:100%; grid-template-columns:1fr; gap:20px; margin:0; }.heroContent>img { width:82px; margin:auto; }.hero h1 { grid-template-columns:auto 35px auto; justify-content:center; font-size:15vw; line-height:.75; }.hero h1 small { font-size:16px; }.heroTitle>p { margin-top:38px; font-size:20px; line-height:1.25; }
  .film { padding:80px 20px; }.statement { padding:70px 0 0; display:block; }.statement h2 { margin:25px 0; }.videoPlaceholder { height:54vh; }
  .coaching { padding:100px 20px; min-height:650px; }.coachingContent { width:100%; }.collage { inset:0 0 0 30%; opacity:.18; }.actions { flex-direction:column; align-items:stretch; width:max-content; }
  .modal { padding:42px 28px; }
