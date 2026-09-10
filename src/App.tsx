@@ -39,7 +39,7 @@ function Header({ book }: { book: () => void }) {
   </header>
 }
 
-function Home({ book }: { book: () => void }) {
+function Home() {
   return <main>
     <section className={styles.hero}>
       <video className={styles.heroVideo} autoPlay muted loop playsInline aria-label="Dota 2 cinematic background">
@@ -62,6 +62,11 @@ function Home({ book }: { book: () => void }) {
       </div>
     </section>
 
+  </main>
+}
+
+function Coaching({ book }: { book: () => void }) {
+  return <main>
     <section className={styles.coaching}>
       <div className={styles.collage} aria-hidden="true"><span /><span /><span /><span /><span /></div>
       <div className={styles.coachingContent}>
@@ -82,8 +87,8 @@ export default function App() {
   const [booking, setBooking] = useState(false)
   const book = () => setBooking(true)
   return <><Header book={book} /><Routes>
-    <Route path="/" element={<Home book={book} />} />
-    <Route path="/coaching" element={<InnerPage title="COACHING" kicker="Individual growth" book={book}>Personal replay analysis, live sessions, and a clear practice plan tailored to the way you play.</InnerPage>} />
+    <Route path="/" element={<Home />} />
+    <Route path="/coaching" element={<Coaching book={book} />} />
     <Route path="/academy" element={<InnerPage title="ACADEMY" kicker="Build your game" book={book}>A structured place to master Dota fundamentals, decision-making, and high-level game sense.</InnerPage>} />
     <Route path="/about" element={<InnerPage title="ABOUT" kicker="Meet Ardjuna" book={book}>Coaching that turns complex game knowledge into simple, practical decisions you can use in every match.</InnerPage>} />
   </Routes>{booking && <BookingModal close={() => setBooking(false)} />}</>
