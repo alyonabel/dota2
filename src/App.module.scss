@@ -6,6 +6,10 @@ $red: #9f3639;
 .logo img { width: 43px; height: 43px; object-fit:contain; filter:drop-shadow(6px 7px 3px rgba(255,255,255,.32)) drop-shadow(0 0 12px rgba(166,215,226,.28)); }
 nav { display: flex; align-items: center; gap: clamp(22px,3.2vw,52px); font: 600 13px/1 'Rajdhani', sans-serif; letter-spacing: .13em; text-transform: uppercase; }
 nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current='page'] { color: #fff; }
+.language { display:flex; align-items:center; gap:7px; margin-left:-20px; }
+.language button { border:0; padding:5px 2px; background:none; color:#737f83; cursor:pointer; font:600 11px 'Rajdhani',sans-serif; letter-spacing:.1em; transition:color .2s; }
+.language button:hover,.language .languageActive { color:#fff; }
+.language i { width:1px; height:11px; background:#596368; transform:skewX(-18deg); }
 .navButton,.primary { border: 1px solid rgba(203,226,231,.7); background: transparent; text-transform: uppercase; font: 600 13px 'Rajdhani',sans-serif; letter-spacing: .12em; cursor: pointer; padding: 14px 19px; }
 .navButton span { color: $ice; margin-left: 14px; }
 .menuToggle { display:none; background:none; border:0; }
@@ -54,6 +58,29 @@ nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current
 .inner .rule { height:1px; background:#2c363a; margin:50px 0; }
 .inner>p { max-width:650px; color:#9ba7ab; font-size:18px; line-height:1.8; }
 .inner>.primary { margin:30px 20px 30px 0; }.inner>a { font:600 13px 'Rajdhani'; letter-spacing:.12em; text-transform:uppercase; color:#aab8bc; }
+.academy { min-height:100vh; padding:165px 5.5vw 75px; color:#172024; background:radial-gradient(circle at 50% 0,rgba(255,255,255,.96),transparent 42%),linear-gradient(135deg,#dfe4df 0%,#cbd4d1 48%,#b6c1bf 100%); position:relative; overflow:hidden; }
+.academy:before { content:''; position:absolute; inset:0; opacity:.14; background:repeating-linear-gradient(115deg,transparent 0 120px,#21363b 121px,transparent 122px 240px); pointer-events:none; }
+.academyIntro { position:relative; display:grid; grid-template-columns:1fr 1fr; align-items:end; gap:5vw; max-width:1440px; margin:0 auto 58px; }
+.academyIntro .eyebrow { grid-column:1/-1; margin:0; color:#8d3033; }
+.academyIntro h1 { margin:0; font:600 clamp(74px,10vw,150px)/.68 'Teko'; letter-spacing:.04em; text-shadow:3px 2px 0 rgba(255,255,255,.7); }
+.academyIntro p { max-width:570px; margin:0; padding-bottom:2px; color:#445156; font-size:16px; line-height:1.75; }
+.levelGrid { position:relative; display:grid; grid-template-columns:repeat(3,1fr); max-width:1440px; margin:auto; border-top:1px solid rgba(29,48,53,.35); border-bottom:1px solid rgba(29,48,53,.35); }
+.levelCard { min-height:410px; padding:28px clamp(25px,3vw,48px) 38px; position:relative; display:flex; flex-direction:column; color:#172024; border-right:1px solid rgba(29,48,53,.28); transition:background .3s,color .3s,transform .3s; }
+.levelCard:first-child { border-left:1px solid rgba(29,48,53,.28); }
+.levelCard:hover { color:#eef2f1; background:#26363a; transform:translateY(-8px); }
+.levelNumber { font:600 11px 'Rajdhani'; letter-spacing:.2em; opacity:.62; }
+.rune { width:54px; height:54px; margin:35px 0 31px; display:grid; place-items:center; border:1px solid currentColor; transform:rotate(45deg); opacity:.55; }
+.rune i { width:21px; height:21px; border:1px solid currentColor; box-shadow:inset 0 0 0 5px transparent; }
+.levelCard:nth-child(2) .rune i { border-radius:50%; }.levelCard:nth-child(3) .rune i { transform:rotate(45deg); border-width:0 2px 2px 0; }
+.levelTag { text-transform:uppercase; font:700 11px 'Rajdhani'; letter-spacing:.2em; color:#913337; }
+.levelCard h2 { margin:8px 0 14px; text-transform:uppercase; font:600 clamp(38px,4vw,57px)/1 'Teko'; letter-spacing:.02em; }
+.levelCard p { max-width:330px; margin:0; color:inherit; opacity:.72; font-size:14px; line-height:1.7; }
+.cardArrow { position:absolute; right:35px; bottom:32px; font-size:25px; color:#913337; }
+.levelPage { min-height:100vh; padding:190px max(8vw,30px) 90px; color:#172024; background:linear-gradient(115deg,#e0e5e1,#b8c4c1); }
+.levelPage .eyebrow { color:#913337; }.levelPage>.levelTag { display:block; margin-bottom:13px; }
+.levelPage h1 { max-width:1000px; margin:0; font:600 clamp(72px,11vw,155px)/.78 'Teko'; letter-spacing:.025em; }
+.levelPage p { max-width:680px; margin:42px 0; color:#435156; font-size:18px; line-height:1.8; }
+.levelPage .secondary { display:inline-block; border-color:#657377; color:#243034; }
 .modalBackdrop { position:fixed; z-index:50; inset:0; display:grid; place-items:center; padding:20px; background:rgba(1,3,4,.82); backdrop-filter:blur(8px); }
 .modal { width:min(520px,100%); padding:52px; position:relative; background:#11171b; border:1px solid #354248; box-shadow:0 30px 100px #000; }
 .modal h2 { font:500 53px 'Teko'; margin:0 0 10px; text-transform:uppercase; }.modal p { color:#9ca8ac; line-height:1.7; margin-bottom:28px; }
@@ -62,9 +89,11 @@ nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current
 @media(max-width:760px) {
  .header { height:74px; padding:0 20px; }.menuToggle { display:grid; gap:7px; padding:12px; }.menuToggle i { width:24px; height:1px; background:#fff; }
  nav { display:none; position:absolute; top:74px; left:0; right:0; padding:30px; background:#090d10; flex-direction:column; align-items:flex-start; }.navOpen { display:flex; }
+ .language { margin:4px 0 0; }
  .logo img { width:36px; height:36px; }.hero { min-height:600px; padding:100px 20px 42px; }.heroContent { width:100%; }.hero h1 { white-space:normal; font-size:21vw; line-height:.76; }.hero h1 span { display:block; }.heroTitle>p { margin-top:38px; font-size:19px; line-height:1.35; }
  .story { padding:80px 20px 95px; }.storyGrid { grid-template-columns:1fr; gap:45px; padding-top:38px; }.storyGrid p { font-size:15px; line-height:1.85; }
  .film { padding:80px 20px; }.statement { padding:70px 0 0; display:block; }.statement h2 { margin:25px 0; }.videoPlaceholder { height:54vh; }
  .coaching { padding:100px 20px; min-height:650px; }.coachingContent { width:100%; }.collage { inset:0 0 0 30%; opacity:.18; }.actions { flex-direction:column; align-items:stretch; width:max-content; }
  .modal { padding:42px 28px; }
+ .academy { padding:120px 20px 50px; }.academyIntro { grid-template-columns:1fr; gap:25px; margin-bottom:42px; }.academyIntro .eyebrow { grid-column:auto; }.academyIntro p { font-size:14px; }.levelGrid { grid-template-columns:1fr; }.levelCard { min-height:320px; border-left:1px solid rgba(29,48,53,.28); border-bottom:1px solid rgba(29,48,53,.28); }.levelCard:last-child { border-bottom:0; }.rune { margin:25px 0; }.levelPage { padding:145px 20px 70px; }
 }
