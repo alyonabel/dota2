@@ -28,7 +28,7 @@ function Header({ book }: { book: () => void }) {
   useEffect(() => setOpen(false), [location])
   return <header className={styles.header}>
     <Link className={styles.logo} to="/" aria-label="Ardjuna home">
-      <img src={`${import.meta.env.BASE_URL}assets/images/secrets-logo.svg`} alt="" />
+      <img src={`${import.meta.env.BASE_URL}assets/images/icon.png`} alt="" />
       <span>ARDJUNA</span>
     </Link>
     <button className={styles.menuToggle} onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Toggle menu"><i /><i /></button>
