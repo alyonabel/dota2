@@ -8,8 +8,8 @@ const copy = {
   ru: {
     nav: ['Тренировки', 'Академия', 'О нас'], book: 'Записаться', modalKicker: 'Когда будете готовы', modalTitle: 'Записаться на занятие',
     modalText: 'Календарь записи скоро появится. Пока свяжитесь с нами, чтобы выбрать удобное время.', modalClose: 'Понятно',
-    hero: ['«Секреты»', 'Доты'], motto: 'Единственное, что в жизни достигается без усилий, — неудача', discover: 'Узнать больше',
-    storyKicker: '01 / Наша история', storyTitle: 'DOTA — БОЛЬШЕ, ЧЕМ ИГРА.',
+    hero: ['Secrets', 'of Dota'], motto: 'The only thing in life achieved without effort is failure', discover: 'Узнать больше',
+    storyKicker: '01 / Наша история', storyTitle: 'DOTA IS|MORE THAN A GAME',
     story: 'В 2011 году на выставке GamesCom в Кёльне состоялся первый международный турнир по Доте 2. До этого периода численность игроков не превышала 20 тысяч, после чего их количество возросло. Несмотря на то, что эта игра не воспринималась всерьёз, общими усилиями она получила международное признание. Со временем каждый научился формировать собственный взгляд на игру, что послужило причиной для серьёзных разногласий и беспрецедентной критики чужих идей. Подвергнув анализу многочисленные суждения мы заметили, что игроки основывались на личном убеждении, не принимая во внимание научные методы. На основе текущих результатов становится ясно, что отбросив осуждения, мы сможем повысить уровень взаимодействия с союзниками, что поспособствует развитию. Самосознание и готовность преодолеть эти противоречия позволит увидеть игру в новом свете и повысить навыки командной игры, от простых комбинаций до более сложных. Это толкование даёт нам возможность пересмотреть свои выводы, которые будут определять нашу коллективную способность разрешить мнимые разногласия и взглянуть на проблему в её полноценной структуре.',
     coachingKicker: '02 / Тренировки', coachingTitle: 'Ardjuna —|Тренер по Dota 2', coachingText: 'Индивидуальные занятия по Dota 2, построенные вокруг вашей игры, целей и уровня, которого вы хотите достичь.', learn: 'Подробнее',
     academyKicker: '03 / Выберите свой путь', academyTitle: 'АКАДЕМИЯ', academyLead: 'Знание превращает хаос боя в систему. Выберите свой уровень — и начните путь к следующему рангу.',
@@ -18,14 +18,16 @@ const copy = {
       { slug: 'experienced', number: '02', title: 'Опытный', tag: 'Управление игрой', text: 'Улучшите макроигру, принятие решений и стабильность в каждом матче.', page: 'КОНТРОЛИРУЙ ИГРУ', detail: 'Научитесь читать карту, выбирать правильные цели и превращать преимущество в победу. Разбираем ваши матчи и избавляемся от повторяющихся ошибок.' },
       { slug: 'professional', number: '03', title: 'Профессионал', tag: 'Путь к мастерству', text: 'Отточите командное взаимодействие, драфты и мышление высокого уровня.', page: 'ИГРАЙ НА ПРЕДЕЛЕ', detail: 'Углублённая подготовка: драфты, темп, коммуникация и анализ соперника. Для игроков, которые ставят перед собой самые высокие цели.' }
     ],
-    aboutKicker: 'Познакомьтесь с Ardjuna', aboutTitle: 'О НАС', aboutText: 'Тренировки, которые превращают сложные знания об игре в простые практические решения для каждого матча.', back: '← Назад в академию'
+    aboutKicker: '04 / Познакомьтесь с Ardjuna', aboutTitle: 'О НАС', aboutText: 'Тренировки, которые превращают сложные знания об игре в простые практические решения для каждого матча.', back: '← Назад в академию',
+    footerText: 'Смотрите глубже. Думайте точнее. Играйте вместе.', footerNav: 'Навигация', footerContact: 'Начните следующий матч по-новому', copyright: 'Все права защищены',
+    soundOn: 'Включить звук видео', soundOff: 'Выключить звук видео', videoPause: 'Поставить видео на паузу', videoPlay: 'Продолжить видео'
   },
   en: {
     nav: ['Coaching', 'Academy', 'About'], book: 'Book a session', modalKicker: 'Ready when you are', modalTitle: 'Book a session',
     modalText: 'The booking calendar is coming soon. Contact us to choose a convenient time.', modalClose: 'Got it',
     hero: ['“Secrets”', 'of Dota'], motto: 'The only thing in life achieved without effort is failure', discover: 'Discover',
-    storyKicker: '01 / Our story', storyTitle: 'DOTA IS MORE THAN A GAME.',
-    story: 'In 2011, the first international Dota 2 tournament took place at GamesCom in Cologne. Since then, the game has earned worldwide recognition and every player has formed their own view of it. We teach you to analyze decisions without judgment, interact better with allies, and see the match as a complete system — from simple combinations to complex team play.',
+    storyKicker: '01 / Our story', storyTitle: 'DOTA IS|MORE THAN A GAME',
+    story: 'In 2011, the first international Dota 2 tournament was held at GamesCom in Cologne. Before then, the number of players had not exceeded 20,000; afterward, that number began to grow. Although the game was not taken seriously at first, through a collective effort it earned international recognition. Over time, everyone learned to form their own view of the game, which led to serious disagreements and unprecedented criticism of other people’s ideas. After analyzing numerous opinions, we noticed that players relied on personal beliefs without considering scientific methods. The current results make it clear that, by setting judgment aside, we can improve the way we interact with our allies and encourage further growth. Self-awareness and a willingness to overcome these contradictions allow us to see the game in a new light and improve our teamwork, from simple combinations to more complex ones. This interpretation gives us an opportunity to reconsider the conclusions that will define our collective ability to resolve imagined disagreements and view the problem in its complete structure.',
     coachingKicker: '02 / Coaching', coachingTitle: 'Ardjuna —|Dota 2 Coaching', coachingText: 'Individual Dota 2 training sessions built around your game, your goals, and the player you want to become.', learn: 'Learn more',
     academyKicker: '03 / Choose your path', academyTitle: 'ACADEMY', academyLead: 'Knowledge turns the chaos of battle into a system. Choose your level and begin the climb to your next rank.',
     levels: [
@@ -33,7 +35,9 @@ const copy = {
       { slug: 'experienced', number: '02', title: 'Experienced', tag: 'Control the game', text: 'Improve your macro play, decision-making, and consistency in every match.', page: 'CONTROL THE GAME', detail: 'Learn to read the map, choose the right objectives, and turn advantages into victories. We review your matches and eliminate recurring mistakes.' },
       { slug: 'professional', number: '03', title: 'Professional', tag: 'Path to mastery', text: 'Refine teamwork, drafting, and high-level competitive thinking.', page: 'PLAY AT YOUR LIMIT', detail: 'Advanced preparation: drafting, tempo, communication, and opponent analysis. For players pursuing the highest goals.' }
     ],
-    aboutKicker: 'Meet Ardjuna', aboutTitle: 'ABOUT', aboutText: 'Coaching that turns complex game knowledge into simple, practical decisions you can use in every match.', back: '← Back to academy'
+    aboutKicker: '04 / Meet Ardjuna', aboutTitle: 'ABOUT', aboutText: 'Coaching that turns complex game knowledge into simple, practical decisions you can use in every match.', back: '← Back to academy',
+    footerText: 'See deeper. Think clearer. Play together.', footerNav: 'Navigation', footerContact: 'Approach your next match differently', copyright: 'All rights reserved',
+    soundOn: 'Turn video sound on', soundOff: 'Turn video sound off', videoPause: 'Pause background video', videoPlay: 'Resume background video'
   }
 }
 
@@ -55,8 +59,10 @@ function Home({ t }: { t: Text }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [muted, setMuted] = useState(true)
   const [playing, setPlaying] = useState(false)
-  const toggleSound = () => { if (!videoRef.current) return; videoRef.current.muted = !muted; setMuted(!muted); void videoRef.current.play() }
-  return <main><section className={styles.hero}><video ref={videoRef} className={styles.heroVideo} autoPlay muted loop playsInline onPlaying={() => setPlaying(true)} aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.heroContent}><div className={`${styles.heroTitle} ${playing ? styles.heroTitlePlaying : ''}`}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><button className={styles.soundToggle} type="button" onClick={toggleSound} aria-label={muted ? 'Включить звук видео' : 'Выключить звук видео'} aria-pressed={!muted}><span className={styles.speaker} />{muted ? <i className={styles.soundOff} /> : <i className={styles.soundWaves} />}</button><a className={styles.scroll} href="#story">{t.discover}<i /></a></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2>{t.storyTitle.split(' ').slice(0, 2).join(' ')}<br /><em>{t.storyTitle.split(' ').slice(2).join(' ')}</em></h2><p>{t.story}</p></div></section></main>
+  const toggleSound = () => { if (!videoRef.current) return; videoRef.current.muted = !muted; setMuted(!muted) }
+  const togglePlayback = () => { if (!videoRef.current) return; if (videoRef.current.paused) void videoRef.current.play(); else videoRef.current.pause() }
+  const storyTitle = t.storyTitle.split('|')
+  return <main><section className={styles.hero}><video ref={videoRef} className={styles.heroVideo} autoPlay muted loop playsInline onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.heroContent}><div className={`${styles.heroTitle} ${playing ? styles.heroTitlePlaying : ''}`}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><div className={styles.mediaControls}><button className={styles.mediaToggle} type="button" onClick={togglePlayback} aria-label={playing ? t.videoPause : t.videoPlay} aria-pressed={!playing}><span className={playing ? styles.pauseIcon : styles.playIcon} /></button><button className={styles.mediaToggle} type="button" onClick={toggleSound} aria-label={muted ? t.soundOn : t.soundOff} aria-pressed={!muted}><span className={styles.speaker} />{muted ? <i className={styles.soundOff} /> : <i className={styles.soundWaves} />}</button></div><a className={styles.scroll} href="#story">{t.discover}<i /></a></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2><span>{storyTitle[0]}</span><br /><em>{storyTitle[1]}</em></h2><p>{t.story}</p></div></section></main>
 }
 
 function Coaching({ book, t }: { book: () => void; t: Text }) { const title = t.coachingTitle.split('|'); return <main><section className={styles.coaching}><div className={styles.collage} aria-hidden="true"><span /><span /><span /><span /><span /></div><div className={styles.coachingContent}><span className={styles.eyebrow}>{t.coachingKicker}</span><h2>{title[0]}<br /><em>{title[1]}</em></h2><p>{t.coachingText}</p><div className={styles.actions}><button className={styles.primary} onClick={book}>{t.book}</button><Link className={styles.secondary} to="/academy">{t.learn} <span>→</span></Link></div></div></section></main> }
@@ -76,7 +82,6 @@ function Academy({ t }: { t: Text }) {
 
 function AcademyScene({ index }: { index: number }) {
   return <div className={`${styles.academyScene} ${styles[`scene${index}`]}`} aria-hidden="true">
-    <div className={styles.dotaMark}><i /><i /></div>
     <span className={styles.sceneCaption}>{['HEROES / LANES / ITEMS', 'VISION / TEMPO / OBJECTIVES', 'DRAFT / TEAMPLAY / MASTERY'][index]}</span>
   </div>
 }
@@ -86,7 +91,11 @@ function LevelPage({ index, t }: { index: number; t: Text }) {
   return <main className={`${styles.levelPage} ${styles[`levelTheme${index}`]}`}><AcademyScene index={index} /><div className={styles.levelContent}><span className={styles.eyebrow}>{t.academyTitle} / {level.number}</span><span className={styles.levelTag}>{level.tag}</span><h1>{level.page}</h1><p>{level.detail}</p><Link className={styles.secondary} to="/academy">{t.back}</Link></div><span className={styles.verticalLabel}>ARDJUNA · DOTA ACADEMY · {level.number}</span></main>
 }
 
-function About({ t, book }: { t: Text; book: () => void }) { return <main className={styles.inner}><span className={styles.eyebrow}>{t.aboutKicker}</span><h1>{t.aboutTitle}</h1><div className={styles.rule} /><p>{t.aboutText}</p><button className={styles.primary} onClick={book}>{t.book}</button><Link to="/">← Home</Link></main> }
+function About({ t, book }: { t: Text; book: () => void }) { return <main><section className={`${styles.coaching} ${styles.about}`}><div className={styles.collage} aria-hidden="true"><span /><span /><span /><span /><span /></div><div className={styles.coachingContent}><span className={styles.eyebrow}>{t.aboutKicker}</span><h2>{t.aboutTitle}</h2><p>{t.aboutText}</p><div className={styles.actions}><button className={styles.primary} onClick={book}>{t.book}</button><Link className={styles.secondary} to="/academy">{t.learn} <span>→</span></Link></div></div></section></main> }
+
+function Footer({ t, book }: { t: Text; book: () => void }) {
+  return <footer className={styles.footer}><div className={styles.footerLead}><Link className={styles.footerBrand} to="/"><img src={`${import.meta.env.BASE_URL}assets/images/icon.png`} alt="" /><span>ARDJUNA</span></Link><p>{t.footerText}</p></div><div className={styles.footerLinks}><span>{t.footerNav}</span><Link to="/coaching">{t.nav[0]}</Link><Link to="/academy">{t.nav[1]}</Link><Link to="/about">{t.nav[2]}</Link></div><div className={styles.footerCta}><span>{t.footerContact}</span><button onClick={book}>{t.book}<i>↗</i></button></div><div className={styles.footerBottom}><span>© {new Date().getFullYear()} ARDJUNA. {t.copyright}.</span><span>DOTA 2 COACHING / ACADEMY</span></div></footer>
+}
 
 export default function App() {
   const [booking, setBooking] = useState(false)
@@ -94,5 +103,5 @@ export default function App() {
   const setLanguage = (next: Language) => { setLanguageState(next); localStorage.setItem('ardjuna-language', next) }
   useEffect(() => { document.documentElement.lang = language }, [language])
   const t = copy[language]; const book = () => setBooking(true)
-  return <><Header book={book} language={language} setLanguage={setLanguage} t={t} /><Routes><Route path="/" element={<Home t={t} />} /><Route path="/coaching" element={<Coaching book={book} t={t} />} /><Route path="/academy" element={<Academy t={t} />} />{t.levels.map((level, index) => <Route key={level.slug} path={`/academy/${level.slug}`} element={<LevelPage index={index} t={t} />} />)}<Route path="/about" element={<About t={t} book={book} />} /></Routes>{booking && <BookingModal close={() => setBooking(false)} t={t} />}</>
+  return <><Header book={book} language={language} setLanguage={setLanguage} t={t} /><Routes><Route path="/" element={<Home t={t} />} /><Route path="/coaching" element={<Coaching book={book} t={t} />} /><Route path="/academy" element={<Academy t={t} />} />{t.levels.map((level, index) => <Route key={level.slug} path={`/academy/${level.slug}`} element={<LevelPage index={index} t={t} />} />)}<Route path="/about" element={<About t={t} book={book} />} /></Routes><Footer t={t} book={book} />{booking && <BookingModal close={() => setBooking(false)} t={t} />}</>
 }
