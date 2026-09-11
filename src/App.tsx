@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import styles from './App.module.scss'
 
 type Language = 'ru' | 'en'
@@ -51,37 +51,32 @@ function Header({ book, language, setLanguage, t }: { book: () => void; language
   return <header className={styles.header}><Link className={styles.logo} to="/" aria-label="Ardjuna home"><img src={`${import.meta.env.BASE_URL}assets/images/icon.png`} alt="" /><span>ARDJUNA</span></Link><button className={styles.menuToggle} onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Toggle menu"><i /><i /></button><nav className={open ? styles.navOpen : ''} aria-label="Main navigation">{nav.map(([label, path]) => <NavLink key={path} to={path}>{label}</NavLink>)}<button className={styles.navButton} onClick={book}>{t.book} <span>↗</span></button><div className={styles.language} aria-label="Language"><button className={language === 'ru' ? styles.languageActive : ''} onClick={() => setLanguage('ru')}>RU</button><i /><button className={language === 'en' ? styles.languageActive : ''} onClick={() => setLanguage('en')}>EN</button></div></nav></header>
 }
 
-function Home({ t }: { t: Text }) { return <main><section className={styles.hero}><video className={styles.heroVideo} autoPlay muted loop playsInline aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.heroContent}><div className={styles.heroTitle}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><a className={styles.scroll} href="#story">{t.discover}<i /></a></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2>{t.storyTitle.split(' ').slice(0, 2).join(' ')}<br /><em>{t.storyTitle.split(' ').slice(2).join(' ')}</em></h2><p>{t.story}</p></div></section></main> }
+function Home({ t }: { t: Text }) {
+  const [muted, setMuted] = useState(true)
+  return <main><section className={styles.hero}><video id="heroVideo" className={styles.heroVideo} autoPlay muted={muted} loop playsInline aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><button className={styles.soundButton} onClick={() => setMuted(!muted)} aria-label={muted ? 'Включить звук' : 'Выключить звук'}>{muted ? '🔇' : '🔊'}</button><div className={styles.heroContent}><div className={styles.heroTitle}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><a className={styles.scroll} href="#story">{t.discover}<i /></a></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2>{t.storyTitle.split(' ').slice(0, 2).join(' ')}<br /><em>{t.storyTitle.split(' ').slice(2).join(' ')}</em></h2><p>{t.story}</p></div></section></main>
+}
 
 function Coaching({ book, t }: { book: () => void; t: Text }) { const title = t.coachingTitle.split('|'); return <main><section className={styles.coaching}><div className={styles.collage} aria-hidden="true"><span /><span /><span /><span /><span /></div><div className={styles.coachingContent}><span className={styles.eyebrow}>{t.coachingKicker}</span><h2>{title[0]}<br /><em>{title[1]}</em></h2><p>{t.coachingText}</p><div className={styles.actions}><button className={styles.primary} onClick={book}>{t.book}</button><Link className={styles.secondary} to="/academy">{t.learn} <span>→</span></Link></div></div></section></main> }
 
-function Academy({ t }: { t: Text }) {
-  const navigate = useNavigate()
-  const openLevel = (event: React.MouseEvent<HTMLAnchorElement>, slug: string) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-    event.preventDefault()
-    const changePage = () => navigate(`/academy/${slug}`)
-    const transition = (document as Document & { startViewTransition?: (callback: () => void) => void }).startViewTransition
-    if (transition) transition.call(document, changePage)
-    else changePage()
-  }
-  return <main className={styles.academy}><div className={styles.academyIntro}><span className={styles.eyebrow}>{t.academyKicker}</span><h1>{t.academyTitle}</h1><p>{t.academyLead}</p></div><div className={styles.levelGrid}>{t.levels.map((level) => <Link className={styles.levelCard} to={`/academy/${level.slug}`} onClick={(event) => openLevel(event, level.slug)} key={level.slug}><span className={styles.levelNumber}>{level.number}</span><div className={styles.rune} aria-hidden="true"><i /></div><span className={styles.levelTag}>{level.tag}</span><h2>{level.title}</h2><p>{level.text}</p><span className={styles.cardArrow}>→</span></Link>)}</div></main>
+const academyLevels = [
+  { slug: 'beginner', number: '01', tag: 'GAME FOUNDATIONS', title: 'YOUR FIRST STEP', detail: 'Master the map, hero roles, economy, and core mechanics. This program will help you play with confidence.', summary: 'Heroes, lanes, items, principles of Dota 2.' },
+  { slug: 'experienced', number: '02', tag: 'CONTROL THE GAME', title: 'CONTROL THE GAME', detail: 'Learn to read the map, choose the right objectives, and turn advantages into victories.', summary: 'Macro play, decision-making, consistency.' },
+  { slug: 'professional', number: '03', tag: 'PATH TO MASTERY', title: 'PLAY AT YOUR LIMIT', detail: 'Advanced preparation: drafting, tempo, communication, and opponent analysis.', summary: 'For players who want the highest goals.' }
+]
+
+function AcademyHeader({ muted, toggle }: { muted: boolean; toggle: () => void }) {
+  return <header className={styles.academyHeader}><Link to="/" className={styles.academyLogo}><img src={`${import.meta.env.BASE_URL}assets/images/icon.png`} alt="" /><span>ARJUNA</span></Link><nav className={styles.academyTabs}>{academyLevels.map(level => <NavLink key={level.slug} to={`/academy/${level.slug}`}>{level.slug}</NavLink>)}</nav><button onClick={toggle} aria-label={muted ? 'Включить звук' : 'Выключить звук'}>{muted ? '🔇' : '🔊'}</button></header>
 }
 
-const sceneHeroes = [['INVOKER', 'RUBICK', 'PUCK'], ['SVEN', 'LINA', 'VOID'], ['ORACLE', 'KEEPER', 'SILENCER']]
-
-function AcademyScene({ index }: { index: number }) {
-  return <div className={`${styles.academyScene} ${styles[`scene${index}`]}`} aria-hidden="true">
-    {index === 0 && <div className={styles.temple}><i className={styles.pediment} /><div className={styles.columns}>{[0, 1, 2, 3, 4].map((column) => <i key={column} />)}</div></div>}
-    {index === 1 && <><div className={styles.battleMap}><i /><i /><i /></div><div className={styles.rankEmblem}><span>Ⅱ</span></div></>}
-    {index === 2 && <div className={styles.library}>{[0, 1, 2, 3].map((shelf) => <div key={shelf}>{[0, 1, 2, 3, 4, 5, 6, 7].map((book) => <i key={book} />)}</div>)}</div>}
-    <div className={styles.heroParty}>{sceneHeroes[index].map((hero, heroIndex) => <div className={styles.heroFigure} key={hero}><i className={styles.heroHead} /><i className={styles.heroBody} /><span>{hero}</span><b>{heroIndex + 1}</b></div>)}</div>
-  </div>
+function Academy({ t: _t }: { t: Text }) {
+  const [muted, setMuted] = useState(true)
+  return <main className={styles.academy}><AcademyHeader muted={muted} toggle={() => setMuted(!muted)} /><video className={styles.academyVideo} autoPlay muted={muted} loop playsInline><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.academyShade} /><div className={styles.levelGrid}>{academyLevels.map(level => <Link className={styles.levelCard} to={`/academy/${level.slug}`} key={level.slug}><span className={styles.levelNumber}>ACADEMY / {level.number}</span><span className={styles.levelTag}>{level.tag}</span><h2>{level.title}</h2><p>{level.detail}</p><small>{level.summary}</small></Link>)}</div></main>
 }
 
-function LevelPage({ index, t }: { index: number; t: Text }) {
-  const level = t.levels[index]
-  return <main className={`${styles.levelPage} ${styles[`levelTheme${index}`]}`}><AcademyScene index={index} /><div className={styles.levelContent}><span className={styles.eyebrow}>{t.academyTitle} / {level.number}</span><span className={styles.levelTag}>{level.tag}</span><h1>{level.page}</h1><p>{level.detail}</p><Link className={styles.secondary} to="/academy">{t.back}</Link></div><span className={styles.verticalLabel}>ARDJUNA · DOTA ACADEMY · {level.number}</span></main>
+function LevelPage({ index, t: _t }: { index: number; t: Text }) {
+  const [muted, setMuted] = useState(true)
+  const level = academyLevels[index]
+  return <main className={`${styles.levelPage} ${styles[`levelTheme${index}`]}`}><AcademyHeader muted={muted} toggle={() => setMuted(!muted)} /><video className={styles.academyVideo} autoPlay muted={muted} loop playsInline><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.levelOverlay} /><section className={styles.levelContent}><span className={styles.levelNumber}>ACADEMY / {level.number}</span><span className={styles.levelTag}>{level.tag}</span><h1>{level.title}</h1><p>{level.detail}</p><small>{level.summary}</small></section></main>
 }
 
 function About({ t, book }: { t: Text; book: () => void }) { return <main className={styles.inner}><span className={styles.eyebrow}>{t.aboutKicker}</span><h1>{t.aboutTitle}</h1><div className={styles.rule} /><p>{t.aboutText}</p><button className={styles.primary} onClick={book}>{t.book}</button><Link to="/">← Home</Link></main> }
@@ -92,5 +87,6 @@ export default function App() {
   const setLanguage = (next: Language) => { setLanguageState(next); localStorage.setItem('ardjuna-language', next) }
   useEffect(() => { document.documentElement.lang = language }, [language])
   const t = copy[language]; const book = () => setBooking(true)
-  return <><Header book={book} language={language} setLanguage={setLanguage} t={t} /><Routes><Route path="/" element={<Home t={t} />} /><Route path="/coaching" element={<Coaching book={book} t={t} />} /><Route path="/academy" element={<Academy t={t} />} />{t.levels.map((level, index) => <Route key={level.slug} path={`/academy/${level.slug}`} element={<LevelPage index={index} t={t} />} />)}<Route path="/about" element={<About t={t} book={book} />} /></Routes>{booking && <BookingModal close={() => setBooking(false)} t={t} />}</>
+  const location = useLocation()
+  return <>{!location.pathname.startsWith('/academy') && <Header book={book} language={language} setLanguage={setLanguage} t={t} />}<Routes><Route path="/" element={<Home t={t} />} /><Route path="/coaching" element={<Coaching book={book} t={t} />} /><Route path="/academy" element={<Academy t={t} />} />{t.levels.map((level, index) => <Route key={level.slug} path={`/academy/${level.slug}`} element={<LevelPage index={index} t={t} />} />)}<Route path="/about" element={<About t={t} book={book} />} /></Routes>{booking && <BookingModal close={() => setBooking(false)} t={t} />}</>
 }
