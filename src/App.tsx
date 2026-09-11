@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import styles from './App.module.scss'
 
 type Language = 'ru' | 'en'
@@ -55,9 +55,34 @@ function Home({ t }: { t: Text }) { return <main><section className={styles.hero
 
 function Coaching({ book, t }: { book: () => void; t: Text }) { const title = t.coachingTitle.split('|'); return <main><section className={styles.coaching}><div className={styles.collage} aria-hidden="true"><span /><span /><span /><span /><span /></div><div className={styles.coachingContent}><span className={styles.eyebrow}>{t.coachingKicker}</span><h2>{title[0]}<br /><em>{title[1]}</em></h2><p>{t.coachingText}</p><div className={styles.actions}><button className={styles.primary} onClick={book}>{t.book}</button><Link className={styles.secondary} to="/academy">{t.learn} <span>→</span></Link></div></div></section></main> }
 
-function Academy({ t }: { t: Text }) { return <main className={styles.academy}><div className={styles.academyIntro}><span className={styles.eyebrow}>{t.academyKicker}</span><h1>{t.academyTitle}</h1><p>{t.academyLead}</p></div><div className={styles.levelGrid}>{t.levels.map((level) => <Link className={styles.levelCard} to={`/academy/${level.slug}`} key={level.slug}><span className={styles.levelNumber}>{level.number}</span><div className={styles.rune} aria-hidden="true"><i /></div><span className={styles.levelTag}>{level.tag}</span><h2>{level.title}</h2><p>{level.text}</p><span className={styles.cardArrow}>→</span></Link>)}</div></main> }
+function Academy({ t }: { t: Text }) {
+  const navigate = useNavigate()
+  const openLevel = (event: React.MouseEvent<HTMLAnchorElement>, slug: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    const changePage = () => navigate(`/academy/${slug}`)
+    const transition = (document as Document & { startViewTransition?: (callback: () => void) => void }).startViewTransition
+    if (transition) transition.call(document, changePage)
+    else changePage()
+  }
+  return <main className={styles.academy}><div className={styles.academyIntro}><span className={styles.eyebrow}>{t.academyKicker}</span><h1>{t.academyTitle}</h1><p>{t.academyLead}</p></div><div className={styles.levelGrid}>{t.levels.map((level) => <Link className={styles.levelCard} to={`/academy/${level.slug}`} onClick={(event) => openLevel(event, level.slug)} key={level.slug}><span className={styles.levelNumber}>{level.number}</span><div className={styles.rune} aria-hidden="true"><i /></div><span className={styles.levelTag}>{level.tag}</span><h2>{level.title}</h2><p>{level.text}</p><span className={styles.cardArrow}>→</span></Link>)}</div></main>
+}
 
-function LevelPage({ index, t }: { index: number; t: Text }) { const level = t.levels[index]; return <main className={styles.levelPage}><span className={styles.eyebrow}>{t.academyTitle} / {level.number}</span><span className={styles.levelTag}>{level.tag}</span><h1>{level.page}</h1><p>{level.detail}</p><Link className={styles.secondary} to="/academy">{t.back}</Link></main> }
+const sceneHeroes = [['INVOKER', 'RUBICK', 'PUCK'], ['SVEN', 'LINA', 'VOID'], ['ORACLE', 'KEEPER', 'SILENCER']]
+
+function AcademyScene({ index }: { index: number }) {
+  return <div className={`${styles.academyScene} ${styles[`scene${index}`]}`} aria-hidden="true">
+    {index === 0 && <div className={styles.temple}><i className={styles.pediment} /><div className={styles.columns}>{[0, 1, 2, 3, 4].map((column) => <i key={column} />)}</div></div>}
+    {index === 1 && <><div className={styles.battleMap}><i /><i /><i /></div><div className={styles.rankEmblem}><span>Ⅱ</span></div></>}
+    {index === 2 && <div className={styles.library}>{[0, 1, 2, 3].map((shelf) => <div key={shelf}>{[0, 1, 2, 3, 4, 5, 6, 7].map((book) => <i key={book} />)}</div>)}</div>}
+    <div className={styles.heroParty}>{sceneHeroes[index].map((hero, heroIndex) => <div className={styles.heroFigure} key={hero}><i className={styles.heroHead} /><i className={styles.heroBody} /><span>{hero}</span><b>{heroIndex + 1}</b></div>)}</div>
+  </div>
+}
+
+function LevelPage({ index, t }: { index: number; t: Text }) {
+  const level = t.levels[index]
+  return <main className={`${styles.levelPage} ${styles[`levelTheme${index}`]}`}><AcademyScene index={index} /><div className={styles.levelContent}><span className={styles.eyebrow}>{t.academyTitle} / {level.number}</span><span className={styles.levelTag}>{level.tag}</span><h1>{level.page}</h1><p>{level.detail}</p><Link className={styles.secondary} to="/academy">{t.back}</Link></div><span className={styles.verticalLabel}>ARDJUNA · DOTA ACADEMY · {level.number}</span></main>
+}
 
 function About({ t, book }: { t: Text; book: () => void }) { return <main className={styles.inner}><span className={styles.eyebrow}>{t.aboutKicker}</span><h1>{t.aboutTitle}</h1><div className={styles.rule} /><p>{t.aboutText}</p><button className={styles.primary} onClick={book}>{t.book}</button><Link to="/">← Home</Link></main> }
 
