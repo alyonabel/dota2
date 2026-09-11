@@ -19,6 +19,16 @@ nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current
 .heroVideo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 .heroContent { width:min(1320px,88vw); z-index:2; display:grid; place-items:center; padding-top:38px; }
 .heroTitle { text-align:center; }
+.heroTitlePlaying { animation:heroWordsFade 2.8s .35s ease-in forwards; }
+@keyframes heroWordsFade { from { opacity:1; filter:blur(0); } to { opacity:0; filter:blur(8px); } }
+.soundToggle { position:absolute; z-index:4; right:5.5vw; bottom:36px; width:52px; height:52px; padding:0; border:1px solid rgba(220,235,238,.5); border-radius:50%; background:rgba(5,9,11,.5); backdrop-filter:blur(8px); cursor:pointer; transition:border-color .2s,background .2s,transform .2s; }
+.soundToggle:hover { border-color:#fff; background:rgba(5,9,11,.8); transform:scale(1.06); }
+.speaker { position:absolute; left:15px; top:20px; width:8px; height:12px; border:2px solid #eef5f6; border-right:0; }
+.speaker:after { content:''; position:absolute; left:5px; top:-5px; width:10px; height:18px; background:#eef5f6; clip-path:polygon(0 30%,100% 0,100% 100%,0 70%); }
+.soundOff:before,.soundOff:after { content:''; position:absolute; right:12px; top:24px; width:13px; height:1px; background:#cf5458; transform:rotate(45deg); }
+.soundOff:after { transform:rotate(-45deg); }
+.soundWaves { position:absolute; right:10px; top:17px; width:12px; height:18px; border:2px solid #eef5f6; border-width:0 2px 0 0; border-radius:50%; }
+.soundWaves:after { content:''; position:absolute; right:3px; top:4px; width:6px; height:10px; border-right:2px solid #eef5f6; border-radius:50%; }
 .eyebrow { display:block; font:600 12px 'Rajdhani',sans-serif; letter-spacing:.28em; text-transform:uppercase; color:$ice; margin-bottom:24px; }
 .hero h1 { margin:0; white-space:nowrap; text-transform:uppercase; font:500 clamp(82px,10vw,168px)/.76 'Teko',sans-serif; letter-spacing:.025em; filter:drop-shadow(5px 0 0 rgba(155,43,48,.78)) drop-shadow(-4px 3px 0 rgba(65,151,172,.7)); }
 .hero h1 span { color:#dce9eb; }
@@ -110,6 +120,25 @@ nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current
 .library { position:absolute; inset:9% 3% 5%; display:grid; grid-template-columns:1fr 1fr; gap:4%; padding:4%; border:12px solid #28170f; background:#52321f; box-shadow:inset 0 0 70px #100806; }
 .library>div { display:flex; align-items:flex-end; padding:0 5% 8px; border-bottom:13px solid #25130c; box-shadow:0 9px 0 #785033; }
 .library i { flex:1; height:65%; margin:0 2px; background:linear-gradient(90deg,#6b2721,#b54e39,#5e211c); border-top:2px solid #d59e5f; }.library i:nth-child(2n){height:83%;background:#32504b}.library i:nth-child(3n){height:56%;background:#a8863f}.library i:nth-child(5n){transform:rotate(-6deg);transform-origin:bottom}
+
+/* Academy tracks use the Dota hero mural as three distinct, cinematic crops. */
+.levelPage { background:#080b0d; }
+.levelContent { padding:48px; border-left:2px solid var(--accent); background:linear-gradient(110deg,rgba(6,9,11,.94),rgba(9,13,16,.72)); box-shadow:0 28px 90px rgba(0,0,0,.48); backdrop-filter:blur(8px); }
+.levelPage h1 { color:#f0f3f2; text-shadow:3px 3px 0 rgba(0,0,0,.6); }
+.levelPage p,.levelTheme0 p,.levelTheme1 p,.levelTheme2 p { color:#b7c0c1; }
+.academyScene,.scene0,.scene1,.scene2 { inset:0; background-image:linear-gradient(90deg,#080b0d 3%,rgba(8,11,13,.32) 52%,rgba(8,11,13,.4)),linear-gradient(0deg,#080b0d,transparent 42%,rgba(5,7,8,.6)),url('/assets/images/background.png'); background-size:cover; filter:saturate(.82) contrast(1.12); }
+.scene0 { background-position:38% center; --mark:#68b9c6; }
+.scene1 { background-position:62% center; --mark:#cf4a3d; }
+.scene2 { background-position:85% center; --mark:#d3a94f; }
+.academyScene:after { background:linear-gradient(90deg,#080b0d 0,rgba(8,11,13,.9) 29%,transparent 68%),repeating-linear-gradient(115deg,transparent 0 99px,rgba(255,255,255,.035) 100px 101px); }
+.dotaMark { position:absolute; z-index:2; right:8vw; top:18%; width:clamp(110px,14vw,210px); aspect-ratio:1; border:clamp(10px,1.2vw,18px) solid var(--mark); transform:rotate(3deg); opacity:.75; box-shadow:0 0 60px color-mix(in srgb,var(--mark),transparent 55%); }
+.dotaMark:before,.dotaMark:after { content:''; position:absolute; width:115%; height:14%; left:-8%; top:43%; background:var(--mark); transform:rotate(48deg); }
+.dotaMark:after { width:40%; left:48%; top:65%; transform:rotate(-42deg); }
+.dotaMark i:first-child,.dotaMark i:last-child { position:absolute; z-index:1; background:#101416; width:27%; height:26%; }
+.dotaMark i:first-child { left:-7%; top:38%; transform:rotate(48deg); }.dotaMark i:last-child { right:-7%; bottom:13%; transform:rotate(48deg); }
+.sceneCaption { position:absolute; z-index:3; right:7vw; bottom:10%; padding:12px 18px; border-top:1px solid var(--mark); border-bottom:1px solid var(--mark); color:#fff; font:600 11px 'Rajdhani'; letter-spacing:.32em; }
+.levelTheme0,.levelTheme1,.levelTheme2 { color:#edf2f1; }
+.levelTheme0 { --accent:#66bbc5; }.levelTheme1 { --accent:#e2604f; }.levelTheme2 { --accent:#d7ad63; }
 @keyframes levelReveal { from { opacity:0; clip-path:inset(0 0 0 100%); } to { opacity:1; clip-path:inset(0); } }
 @keyframes heroArrive { from { opacity:0; transform:translateY(70px) rotateY(-18deg); } to { opacity:1; transform:none; } }
 ::view-transition-old(root) { animation:.42s cubic-bezier(.65,0,.35,1) both pageOut; }
@@ -133,4 +162,4 @@ nav a { color: #aeb7ba; transition: color .2s; } nav a:hover, nav a[aria-current
  .academy { padding:120px 20px 50px; }.academyIntro { grid-template-columns:1fr; gap:25px; margin-bottom:42px; }.academyIntro .eyebrow { grid-column:auto; }.academyIntro p { font-size:14px; }.levelGrid { grid-template-columns:1fr; }.levelCard { min-height:320px; border-left:1px solid rgba(29,48,53,.28); border-bottom:1px solid rgba(29,48,53,.28); }.levelCard:last-child { border-bottom:0; }.rune { margin:25px 0; }.levelPage { padding:120px 20px 55px; align-items:flex-end; }.levelContent { width:100%; padding:25px 0; }.levelPage h1 { font-size:19vw; }.levelPage p { margin:25px 0; font-size:14px; line-height:1.65; }.academyScene { inset:0; opacity:.58; }.academyScene:after { background:linear-gradient(0deg,var(--page-bg) 6%,transparent 65%),linear-gradient(90deg,var(--page-bg),transparent 70%); }.heroParty { left:25%; height:45%; bottom:23%; }.verticalLabel { display:none; }.rankEmblem { width:90px; }.library { inset:10% -20% 20% 18%; }
 }
 
-@media(prefers-reduced-motion:reduce) { .levelPage,.heroFigure,::view-transition-old(root),::view-transition-new(root) { animation:none; } }
+@media(prefers-reduced-motion:reduce) { .levelPage,.heroFigure,.heroTitlePlaying,::view-transition-old(root),::view-transition-new(root) { animation:none; } }

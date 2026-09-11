@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import styles from './App.module.scss'
 
@@ -10,7 +10,7 @@ const copy = {
     modalText: 'Календарь записи скоро появится. Пока свяжитесь с нами, чтобы выбрать удобное время.', modalClose: 'Понятно',
     hero: ['«Секреты»', 'Доты'], motto: 'Единственное, что в жизни достигается без усилий, — неудача', discover: 'Узнать больше',
     storyKicker: '01 / Наша история', storyTitle: 'DOTA — БОЛЬШЕ, ЧЕМ ИГРА.',
-    story: 'В 2011 году на выставке GamesCom в Кёльне состоялся первый международный турнир по Dota 2. С тех пор игра получила мировое признание, а у каждого игрока сформировался собственный взгляд на неё. Мы учим анализировать решения без осуждения, лучше взаимодействовать с союзниками и видеть матч как целостную систему — от простых комбинаций до сложной командной игры.',
+    story: 'В 2011 году на выставке GamesCom в Кёльне состоялся первый международный турнир по Доте 2. До этого периода численность игроков не превышала 20 тысяч, после чего их количество возросло. Несмотря на то, что эта игра не воспринималась всерьёз, общими усилиями она получила международное признание. Со временем каждый научился формировать собственный взгляд на игру, что послужило причиной для серьёзных разногласий и беспрецедентной критики чужих идей. Подвергнув анализу многочисленные суждения мы заметили, что игроки основывались на личном убеждении, не принимая во внимание научные методы. На основе текущих результатов становится ясно, что отбросив осуждения, мы сможем повысить уровень взаимодействия с союзниками, что поспособствует развитию. Самосознание и готовность преодолеть эти противоречия позволит увидеть игру в новом свете и повысить навыки командной игры, от простых комбинаций до более сложных. Это толкование даёт нам возможность пересмотреть свои выводы, которые будут определять нашу коллективную способность разрешить мнимые разногласия и взглянуть на проблему в её полноценной структуре.',
     coachingKicker: '02 / Тренировки', coachingTitle: 'Ardjuna —|Тренер по Dota 2', coachingText: 'Индивидуальные занятия по Dota 2, построенные вокруг вашей игры, целей и уровня, которого вы хотите достичь.', learn: 'Подробнее',
     academyKicker: '03 / Выберите свой путь', academyTitle: 'АКАДЕМИЯ', academyLead: 'Знание превращает хаос боя в систему. Выберите свой уровень — и начните путь к следующему рангу.',
     levels: [
@@ -51,7 +51,13 @@ function Header({ book, language, setLanguage, t }: { book: () => void; language
   return <header className={styles.header}><Link className={styles.logo} to="/" aria-label="Ardjuna home"><img src={`${import.meta.env.BASE_URL}assets/images/icon.png`} alt="" /><span>ARDJUNA</span></Link><button className={styles.menuToggle} onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Toggle menu"><i /><i /></button><nav className={open ? styles.navOpen : ''} aria-label="Main navigation">{nav.map(([label, path]) => <NavLink key={path} to={path}>{label}</NavLink>)}<button className={styles.navButton} onClick={book}>{t.book} <span>↗</span></button><div className={styles.language} aria-label="Language"><button className={language === 'ru' ? styles.languageActive : ''} onClick={() => setLanguage('ru')}>RU</button><i /><button className={language === 'en' ? styles.languageActive : ''} onClick={() => setLanguage('en')}>EN</button></div></nav></header>
 }
 
-function Home({ t }: { t: Text }) { return <main><section className={styles.hero}><video className={styles.heroVideo} autoPlay muted loop playsInline aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.heroContent}><div className={styles.heroTitle}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><a className={styles.scroll} href="#story">{t.discover}<i /></a></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2>{t.storyTitle.split(' ').slice(0, 2).join(' ')}<br /><em>{t.storyTitle.split(' ').slice(2).join(' ')}</em></h2><p>{t.story}</p></div></section></main> }
+function Home({ t }: { t: Text }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [muted, setMuted] = useState(true)
+  const [playing, setPlaying] = useState(false)
+  const toggleSound = () => { if (!videoRef.current) return; videoRef.current.muted = !muted; setMuted(!muted); void videoRef.current.play() }
+  return <main><section className={styles.hero}><video ref={videoRef} className={styles.heroVideo} autoPlay muted loop playsInline onPlaying={() => setPlaying(true)} aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.heroContent}><div className={`${styles.heroTitle} ${playing ? styles.heroTitlePlaying : ''}`}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><button className={styles.soundToggle} type="button" onClick={toggleSound} aria-label={muted ? 'Включить звук видео' : 'Выключить звук видео'} aria-pressed={!muted}><span className={styles.speaker} />{muted ? <i className={styles.soundOff} /> : <i className={styles.soundWaves} />}</button><a className={styles.scroll} href="#story">{t.discover}<i /></a></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2>{t.storyTitle.split(' ').slice(0, 2).join(' ')}<br /><em>{t.storyTitle.split(' ').slice(2).join(' ')}</em></h2><p>{t.story}</p></div></section></main>
+}
 
 function Coaching({ book, t }: { book: () => void; t: Text }) { const title = t.coachingTitle.split('|'); return <main><section className={styles.coaching}><div className={styles.collage} aria-hidden="true"><span /><span /><span /><span /><span /></div><div className={styles.coachingContent}><span className={styles.eyebrow}>{t.coachingKicker}</span><h2>{title[0]}<br /><em>{title[1]}</em></h2><p>{t.coachingText}</p><div className={styles.actions}><button className={styles.primary} onClick={book}>{t.book}</button><Link className={styles.secondary} to="/academy">{t.learn} <span>→</span></Link></div></div></section></main> }
 
@@ -68,14 +74,10 @@ function Academy({ t }: { t: Text }) {
   return <main className={styles.academy}><div className={styles.academyIntro}><span className={styles.eyebrow}>{t.academyKicker}</span><h1>{t.academyTitle}</h1><p>{t.academyLead}</p></div><div className={styles.levelGrid}>{t.levels.map((level) => <Link className={styles.levelCard} to={`/academy/${level.slug}`} onClick={(event) => openLevel(event, level.slug)} key={level.slug}><span className={styles.levelNumber}>{level.number}</span><div className={styles.rune} aria-hidden="true"><i /></div><span className={styles.levelTag}>{level.tag}</span><h2>{level.title}</h2><p>{level.text}</p><span className={styles.cardArrow}>→</span></Link>)}</div></main>
 }
 
-const sceneHeroes = [['INVOKER', 'RUBICK', 'PUCK'], ['SVEN', 'LINA', 'VOID'], ['ORACLE', 'KEEPER', 'SILENCER']]
-
 function AcademyScene({ index }: { index: number }) {
   return <div className={`${styles.academyScene} ${styles[`scene${index}`]}`} aria-hidden="true">
-    {index === 0 && <div className={styles.temple}><i className={styles.pediment} /><div className={styles.columns}>{[0, 1, 2, 3, 4].map((column) => <i key={column} />)}</div></div>}
-    {index === 1 && <><div className={styles.battleMap}><i /><i /><i /></div><div className={styles.rankEmblem}><span>Ⅱ</span></div></>}
-    {index === 2 && <div className={styles.library}>{[0, 1, 2, 3].map((shelf) => <div key={shelf}>{[0, 1, 2, 3, 4, 5, 6, 7].map((book) => <i key={book} />)}</div>)}</div>}
-    <div className={styles.heroParty}>{sceneHeroes[index].map((hero, heroIndex) => <div className={styles.heroFigure} key={hero}><i className={styles.heroHead} /><i className={styles.heroBody} /><span>{hero}</span><b>{heroIndex + 1}</b></div>)}</div>
+    <div className={styles.dotaMark}><i /><i /></div>
+    <span className={styles.sceneCaption}>{['HEROES / LANES / ITEMS', 'VISION / TEMPO / OBJECTIVES', 'DRAFT / TEAMPLAY / MASTERY'][index]}</span>
   </div>
 }
 
