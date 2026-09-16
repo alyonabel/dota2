@@ -83,24 +83,30 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
 .inner .rule { height:1px; background:#2c363a; margin:50px 0; }
 .inner>p { max-width:650px; color:#9ba7ab; font-size:18px; line-height:1.8; }
 .inner>.primary { margin:30px 20px 30px 0; }.inner>a { font:600 13px 'Rajdhani'; letter-spacing:.12em; text-transform:uppercase; color:#aab8bc; }
-.academy { min-height:100vh; padding:165px 5.5vw 75px; color:#172024; background:radial-gradient(circle at 50% 0,rgba(255,255,255,.96),transparent 42%),linear-gradient(135deg,#dfe4df 0%,#cbd4d1 48%,#b6c1bf 100%); position:relative; overflow:hidden; }
+.academy { min-height:100vh; padding:145px 5.5vw 62px; color:#172024; background:radial-gradient(circle at 50% 0,rgba(255,255,255,.96),transparent 42%),linear-gradient(135deg,#dfe4df 0%,#cbd4d1 48%,#b6c1bf 100%); position:relative; overflow:hidden; }
 .academy:before { content:''; position:absolute; inset:0; opacity:.14; background:repeating-linear-gradient(115deg,transparent 0 120px,#21363b 121px,transparent 122px 240px); pointer-events:none; }
-.academyIntro { position:relative; display:grid; grid-template-columns:1fr 1fr; align-items:end; gap:5vw; max-width:1440px; margin:0 auto 58px; }
+.academyIntro { position:relative; display:grid; grid-template-columns:1fr 1fr; align-items:end; gap:5vw; max-width:1440px; margin:0 auto 42px; }
 .academyIntro .eyebrow { grid-column:1/-1; margin:0; color:#8d3033; }
-.academyIntro h1 { margin:0; font:600 clamp(74px,10vw,150px)/.68 'Teko'; letter-spacing:.04em; text-shadow:3px 2px 0 rgba(255,255,255,.7); }
+.academyIntro h1 { margin:0; font:700 clamp(58px,8vw,120px)/.78 Georgia,serif; letter-spacing:-.045em; text-shadow:2px 2px 0 rgba(255,255,255,.58); }
 .academyIntro p { max-width:570px; margin:0; padding-bottom:2px; color:#445156; font-size:16px; line-height:1.75; }
 .levelGrid { position:relative; display:grid; grid-template-columns:repeat(3,1fr); max-width:1440px; margin:auto; border-top:1px solid rgba(29,48,53,.35); border-bottom:1px solid rgba(29,48,53,.35); }
-.levelCard { min-height:410px; padding:28px clamp(25px,3vw,48px) 38px; position:relative; display:flex; flex-direction:column; color:#172024; border-right:1px solid rgba(29,48,53,.28); transition:background .3s,color .3s,transform .3s; }
+.levelCard { min-height:382px; padding:26px clamp(25px,3vw,48px) 36px; position:relative; display:flex; flex-direction:column; color:#172024; border-right:1px solid rgba(29,48,53,.28); cursor:pointer; transition:background .225s ease,border-color .225s ease,transform .225s ease; }
 .levelCard:first-child { border-left:1px solid rgba(29,48,53,.28); }
-.levelCard:hover { color:#eef2f1; background:#26363a; transform:translateY(-8px); }
+.levelCard:hover { background:rgba(181,194,190,.72); border-color:rgba(25,43,48,.55); transform:translateY(-2px); }
+.levelCard:focus-visible { z-index:1; outline:2px solid #7f2e32; outline-offset:4px; background:rgba(225,231,227,.72); }
 .levelNumber { font:600 11px 'Rajdhani'; letter-spacing:.2em; opacity:.62; }
-.rune { width:54px; height:54px; margin:35px 0 31px; display:grid; place-items:center; border:1px solid currentColor; transform:rotate(45deg); opacity:.55; }
-.rune i { width:21px; height:21px; border:1px solid currentColor; box-shadow:inset 0 0 0 5px transparent; }
-.levelCard:nth-child(2) .rune i { border-radius:50%; }.levelCard:nth-child(3) .rune i { transform:rotate(45deg); border-width:0 2px 2px 0; }
+.rankSymbol { width:56px; height:56px; margin:31px 0 28px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.15; opacity:.67; }
+.rankSymbol path:not(:first-child) { opacity:0; }
+.rankSymbol .rankVisible { opacity:1; }
+.rankSymbol path:last-child.rankVisible { fill:currentColor; stroke:none; }
 .levelTag { text-transform:uppercase; font:700 11px 'Rajdhani'; letter-spacing:.2em; color:#913337; }
-.levelCard h2 { margin:8px 0 14px; text-transform:uppercase; font:600 clamp(38px,4vw,57px)/1 'Teko'; letter-spacing:.02em; }
+.levelCard h2 { margin:10px 0 16px; text-transform:uppercase; font:650 clamp(27px,2.5vw,40px)/1.08 'Space Grotesk',sans-serif; letter-spacing:-.035em; }
 .levelCard p { max-width:330px; margin:0; color:inherit; opacity:.72; font-size:14px; line-height:1.7; }
-.cardArrow { position:absolute; right:35px; bottom:32px; font-size:25px; color:#913337; }
+.cardArrow { position:absolute; right:35px; bottom:30px; font-size:23px; color:#913337; transition:transform .225s ease; }
+.levelCard:hover .cardArrow,.levelCard:focus-visible .cardArrow { transform:translateX(6px); }
+.levelHelp { position:relative; display:block; width:max-content; max-width:100%; margin:22px auto 0; padding:8px 4px; color:#4f5d60; font:600 12px 'Space Grotesk',sans-serif; letter-spacing:.01em; border-bottom:1px solid transparent; transition:color .225s,border-color .225s; }
+.levelHelp:hover { color:#172024; border-color:#697679; }
+.levelHelp:focus-visible { outline:2px solid #7f2e32; outline-offset:3px; }
 .levelPage { min-height:100svh; padding:170px max(7vw,30px) 70px; position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; animation:levelReveal .85s cubic-bezier(.2,.75,.2,1) both; }
 .levelContent { position:relative; z-index:3; width:min(700px,55vw); }
 .levelPage .eyebrow { color:var(--accent); }.levelPage .levelTag { display:block; margin-bottom:13px; color:var(--accent); }
@@ -165,6 +171,15 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
 .footerLinks { display:flex; flex-direction:column; align-items:flex-start; gap:15px; }.footerLinks>span,.footerCta>span { margin-bottom:6px; color:#667478; text-transform:uppercase; font:600 10px 'Rajdhani'; letter-spacing:.24em; }.footerLinks a { color:#aeb9bc; font:600 13px 'Rajdhani'; letter-spacing:.12em; text-transform:uppercase; transition:color .2s,transform .2s; }.footerLinks a:hover { color:#fff; transform:translateX(4px); }
 .footerCta { display:flex; flex-direction:column; align-items:flex-start; }.footerCta button { width:100%; padding:14px 0; display:flex; justify-content:space-between; border:0; border-bottom:1px solid $ice; color:#edf3f4; background:none; cursor:pointer; text-align:left; text-transform:uppercase; font:600 14px 'Rajdhani'; letter-spacing:.12em; }.footerCta button i { color:$ice; font-style:normal; }.footerBottom { grid-column:1/-1; margin-top:4px; padding-top:11px; display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,.08); color:#536064; font:600 9px 'Rajdhani'; letter-spacing:.18em; text-transform:uppercase; }
 
+@media(max-width:1050px) and (min-width:761px) {
+ .academyIntro { grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr); }
+ .levelGrid { grid-template-columns:repeat(2,1fr); border-bottom:0; }
+ .levelCard { min-height:350px; border-bottom:1px solid rgba(29,48,53,.28); }
+ .levelCard:nth-child(2) { border-right:1px solid rgba(29,48,53,.28); }
+ .levelCard:last-child { grid-column:1/-1; min-height:300px; border-left:1px solid rgba(29,48,53,.28); }
+ .levelCard:last-child p { max-width:520px; }
+}
+
 @media(max-width:760px) {
  .header { height:74px; padding:0 20px; }.menuToggle { display:grid; gap:7px; padding:12px; }.menuToggle i { width:24px; height:1px; background:#fff; }
  nav { display:none; position:absolute; top:74px; left:0; right:0; padding:30px; background:#090d10; flex-direction:column; align-items:flex-start; }.navOpen { display:flex; }
@@ -176,8 +191,8 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
  .coaching { padding:100px 20px; min-height:650px; }.coachingContent { width:100%; }.collage { inset:0 0 0 30%; opacity:.18; }.actions { flex-direction:column; align-items:stretch; width:max-content; }
  .about .collage { inset:0 30% 0 0; }.about .coachingContent { margin-left:0; }
  .modal { padding:42px 28px; }
- .academy { padding:120px 20px 50px; }.academyIntro { grid-template-columns:1fr; gap:25px; margin-bottom:42px; }.academyIntro .eyebrow { grid-column:auto; }.academyIntro p { font-size:14px; }.levelGrid { grid-template-columns:1fr; }.levelCard { min-height:320px; border-left:1px solid rgba(29,48,53,.28); border-bottom:1px solid rgba(29,48,53,.28); }.levelCard:last-child { border-bottom:0; }.rune { margin:25px 0; }.levelPage { padding:120px 20px 55px; align-items:flex-end; }.levelContent { width:100%; padding:25px 0; }.levelPage h1 { font-size:19vw; }.levelPage p { margin:25px 0; font-size:14px; line-height:1.65; }.academyScene { inset:0; opacity:.58; }.academyScene:after { background:linear-gradient(0deg,var(--page-bg) 6%,transparent 65%),linear-gradient(90deg,var(--page-bg),transparent 70%); }.heroParty { left:25%; height:45%; bottom:23%; }.verticalLabel { display:none; }.rankEmblem { width:90px; }.library { inset:10% -20% 20% 18%; }
+ .academy { padding:112px 20px 45px; }.academyIntro { grid-template-columns:1fr; gap:22px; margin-bottom:34px; }.academyIntro .eyebrow { grid-column:auto; }.academyIntro h1 { font-size:clamp(52px,17vw,76px); }.academyIntro p { font-size:14px; }.levelGrid { grid-template-columns:1fr; }.levelCard { min-height:300px; padding:24px 26px 32px; border-left:1px solid rgba(29,48,53,.28); border-bottom:1px solid rgba(29,48,53,.28); }.levelCard:last-child { border-bottom:0; }.rankSymbol { width:48px; height:48px; margin:22px 0; }.levelCard h2 { font-size:clamp(27px,9vw,36px); }.cardArrow { right:27px; bottom:25px; }.levelHelp { margin-top:18px; font-size:11px; text-align:center; }.levelPage { padding:120px 20px 55px; align-items:flex-end; }.levelContent { width:100%; padding:25px 0; }.levelPage h1 { font-size:19vw; }.levelPage p { margin:25px 0; font-size:14px; line-height:1.65; }.academyScene { inset:0; opacity:.58; }.academyScene:after { background:linear-gradient(0deg,var(--page-bg) 6%,transparent 65%),linear-gradient(90deg,var(--page-bg),transparent 70%); }.heroParty { left:25%; height:45%; bottom:23%; }.verticalLabel { display:none; }.rankEmblem { width:90px; }.library { inset:10% -20% 20% 18%; }
  .footer { padding:30px 20px 14px; grid-template-columns:1fr; gap:22px; }.footerBottom { grid-column:auto; margin-top:4px; gap:12px; flex-direction:column; }.footerCta button { max-width:430px; }
 }
 
-@media(prefers-reduced-motion:reduce) { .levelPage,.heroFigure,.heroTitlePlaying,::view-transition-old(root),::view-transition-new(root) { animation:none; } }
+@media(prefers-reduced-motion:reduce) { .levelPage,.heroFigure,.heroTitlePlaying,::view-transition-old(root),::view-transition-new(root) { animation:none; } .levelCard,.cardArrow { transition:none; } }
