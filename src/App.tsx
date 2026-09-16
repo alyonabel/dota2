@@ -20,7 +20,7 @@ const copy = {
     ],
     aboutKicker: '04 / Познакомьтесь с Ardjuna', aboutTitle: 'О НАС', aboutText: 'Тренировки, которые превращают сложные знания об игре в простые практические решения для каждого матча.', back: '← Назад в академию',
     footerText: 'Смотрите глубже. Думайте точнее. Играйте вместе.', footerNav: 'Навигация', footerContact: 'Начните следующий матч по-новому', copyright: 'Все права защищены',
-    soundOn: 'Включить звук видео', soundOff: 'Выключить звук видео', volume: 'Громкость видео', videoPause: 'Поставить видео на паузу', videoPlay: 'Продолжить видео', selectLevel: 'Выбрать уровень'
+    soundOn: 'Включить звук видео', soundOff: 'Выключить звук видео', volume: 'Громкость видео', videoPause: 'Поставить видео на паузу', videoPlay: 'Продолжить видео'
   },
   en: {
     nav: ['Coaching', 'Academy', 'About'], book: 'Book a session', modalKicker: 'Ready when you are', modalTitle: 'Book a session',
@@ -37,7 +37,7 @@ const copy = {
     ],
     aboutKicker: '04 / Meet Ardjuna', aboutTitle: 'ABOUT', aboutText: 'Coaching that turns complex game knowledge into simple, practical decisions you can use in every match.', back: '← Back to academy',
     footerText: 'See deeper. Think clearer. Play together.', footerNav: 'Navigation', footerContact: 'Approach your next match differently', copyright: 'All rights reserved',
-    soundOn: 'Turn video sound on', soundOff: 'Turn video sound off', volume: 'Video volume', videoPause: 'Pause background video', videoPlay: 'Resume background video', selectLevel: 'Choose level'
+    soundOn: 'Turn video sound on', soundOff: 'Turn video sound off', volume: 'Video volume', videoPause: 'Pause background video', videoPlay: 'Resume background video'
   }
 }
 
@@ -85,7 +85,7 @@ function Academy({ t }: { t: Text }) {
     if (transition) transition.call(document, changePage)
     else changePage()
   }
-  return <main className={styles.academy}><div className={styles.academyIntro}><span className={styles.eyebrow}>{t.academyKicker}</span><h1>{t.academyTitle}</h1><p>{t.academyLead}</p></div><div className={styles.levelGrid}>{t.levels.map((level) => <Link className={styles.levelCard} to={`/academy/${level.slug}`} onClick={(event) => openLevel(event, level.slug)} key={level.slug}><span className={styles.levelNumber}>{level.number}</span><div className={styles.levelCardBody}><span className={styles.levelTag}>{level.tag}</span><h2>{level.title}</h2><p>{level.text}</p></div><span className={styles.levelCta}>{t.selectLevel}<i>→</i></span></Link>)}</div></main>
+  return <main className={styles.academy}><div className={styles.academyIntro}><span className={styles.eyebrow}>{t.academyKicker}</span><h1>{t.academyTitle}</h1><p>{t.academyLead}</p></div><div className={styles.levelGrid}>{t.levels.map((level) => <Link className={styles.levelCard} to={`/academy/${level.slug}`} onClick={(event) => openLevel(event, level.slug)} key={level.slug}><span className={styles.levelNumber}>{level.number}</span><div className={styles.rune} aria-hidden="true"><i /></div><span className={styles.levelTag}>{level.tag}</span><h2>{level.title}</h2><p>{level.text}</p><span className={styles.cardArrow}>→</span></Link>)}</div></main>
 }
 
 function AcademyScene({ index }: { index: number }) {

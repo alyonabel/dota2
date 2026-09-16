@@ -83,26 +83,24 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
 .inner .rule { height:1px; background:#2c363a; margin:50px 0; }
 .inner>p { max-width:650px; color:#9ba7ab; font-size:18px; line-height:1.8; }
 .inner>.primary { margin:30px 20px 30px 0; }.inner>a { font:600 13px 'Rajdhani'; letter-spacing:.12em; text-transform:uppercase; color:#aab8bc; }
-.academy { min-height:100svh; padding:clamp(140px,15vh,178px) 5.5vw 95px; color:#fff; position:relative; isolation:isolate; overflow:hidden; background:#050607; }
-.academy:before { content:''; position:absolute; z-index:-2; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.48),rgba(0,0,0,.88)),linear-gradient(90deg,rgba(0,0,0,.72),transparent 50%,rgba(0,0,0,.35)),url('/dota2/assets/images/background.png') center 24%/cover no-repeat; filter:saturate(.66) contrast(1.1); }
-.academy:after { content:''; position:absolute; z-index:-1; inset:0; pointer-events:none; background:radial-gradient(circle at 55% 18%,rgba(159,54,57,.13),transparent 32%),repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),rgba(255,255,255,.025) calc(12.5% - 1px) 12.5%); }
-.academyIntro { position:relative; max-width:1440px; margin:0 auto 62px; }
-.academyIntro .eyebrow { display:flex; align-items:center; gap:15px; margin:0 0 24px; color:#e25359; }
-.academyIntro .eyebrow:before { content:''; width:34px; height:1px; background:#e25359; }
-.academyIntro h1 { margin:0; font:600 clamp(92px,11vw,170px)/.68 'Teko'; letter-spacing:.025em; text-shadow:0 12px 50px #000; }
-.academyIntro p { max-width:680px; margin:28px 0 0; color:rgba(255,255,255,.72); font-size:clamp(15px,1.25vw,19px); line-height:1.7; }
-.levelGrid { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2vw,32px); max-width:1440px; margin:auto; }
-.levelCard { min-height:390px; padding:30px; position:relative; display:flex; flex-direction:column; overflow:hidden; color:#fff; border:1px solid rgba(255,255,255,.12); border-radius:24px; background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)); box-shadow:0 22px 55px rgba(0,0,0,.28); backdrop-filter:blur(18px); transition:transform .5s cubic-bezier(.23,1,.32,1),border-color .35s,box-shadow .5s,background .35s; }
-.levelCard:before { content:''; position:absolute; inset:0; opacity:0; background:linear-gradient(135deg,rgba(202,55,63,.16),transparent 52%); transition:opacity .4s; }
-.levelCard:hover { transform:translateY(-12px); border-color:rgba(222,75,83,.48); background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035)); box-shadow:0 0 42px rgba(255,70,85,.23),0 28px 70px rgba(0,0,0,.5); }
-.levelCard:hover:before { opacity:1; }
-.levelNumber { position:relative; width:54px; height:54px; display:grid; place-items:center; border-radius:16px; color:#fff; background:rgba(255,255,255,.09); font:500 25px/1 'Teko'; letter-spacing:.06em; }
-.levelCardBody { position:relative; margin-top:45px; }
-.levelTag { color:#fff; text-transform:uppercase; font:600 clamp(18px,1.7vw,25px)/1 'Teko'; letter-spacing:.04em; }
-.levelCard h2 { margin:7px 0 18px; color:#fff; text-transform:uppercase; font:600 clamp(42px,4vw,61px)/.84 'Teko'; letter-spacing:.015em; overflow-wrap:anywhere; }
-.levelCard p { max-width:355px; margin:0; color:rgba(255,255,255,.65); font-size:14px; line-height:1.7; }
-.levelCta { position:relative; margin-top:auto; padding:15px 18px; display:flex; align-items:center; justify-content:space-between; border-radius:14px; background:#b83138; color:#fff; text-transform:uppercase; font:600 12px 'Roboto Condensed'; letter-spacing:.1em; transition:background .25s,transform .25s; }
-.levelCta i { font-style:normal; font-size:18px; }.levelCard:hover .levelCta { background:#d23d45; transform:translateY(-2px); }
+.academy { min-height:100vh; padding:165px 5.5vw 75px; color:#172024; background:radial-gradient(circle at 50% 0,rgba(255,255,255,.96),transparent 42%),linear-gradient(135deg,#dfe4df 0%,#cbd4d1 48%,#b6c1bf 100%); position:relative; overflow:hidden; }
+.academy:before { content:''; position:absolute; inset:0; opacity:.14; background:repeating-linear-gradient(115deg,transparent 0 120px,#21363b 121px,transparent 122px 240px); pointer-events:none; }
+.academyIntro { position:relative; display:grid; grid-template-columns:1fr 1fr; align-items:end; gap:5vw; max-width:1440px; margin:0 auto 58px; }
+.academyIntro .eyebrow { grid-column:1/-1; margin:0; color:#8d3033; }
+.academyIntro h1 { margin:0; font:600 clamp(74px,10vw,150px)/.68 'Teko'; letter-spacing:.04em; text-shadow:3px 2px 0 rgba(255,255,255,.7); }
+.academyIntro p { max-width:570px; margin:0; padding-bottom:2px; color:#445156; font-size:16px; line-height:1.75; }
+.levelGrid { position:relative; display:grid; grid-template-columns:repeat(3,1fr); max-width:1440px; margin:auto; border-top:1px solid rgba(29,48,53,.35); border-bottom:1px solid rgba(29,48,53,.35); }
+.levelCard { min-height:410px; padding:28px clamp(25px,3vw,48px) 38px; position:relative; display:flex; flex-direction:column; color:#172024; border-right:1px solid rgba(29,48,53,.28); transition:background .3s,color .3s,transform .3s; }
+.levelCard:first-child { border-left:1px solid rgba(29,48,53,.28); }
+.levelCard:hover { color:#eef2f1; background:#26363a; transform:translateY(-8px); }
+.levelNumber { font:600 11px 'Rajdhani'; letter-spacing:.2em; opacity:.62; }
+.rune { width:54px; height:54px; margin:35px 0 31px; display:grid; place-items:center; border:1px solid currentColor; transform:rotate(45deg); opacity:.55; }
+.rune i { width:21px; height:21px; border:1px solid currentColor; box-shadow:inset 0 0 0 5px transparent; }
+.levelCard:nth-child(2) .rune i { border-radius:50%; }.levelCard:nth-child(3) .rune i { transform:rotate(45deg); border-width:0 2px 2px 0; }
+.levelTag { text-transform:uppercase; font:700 11px 'Rajdhani'; letter-spacing:.2em; color:#913337; }
+.levelCard h2 { margin:8px 0 14px; text-transform:uppercase; font:600 clamp(38px,4vw,57px)/1 'Teko'; letter-spacing:.02em; }
+.levelCard p { max-width:330px; margin:0; color:inherit; opacity:.72; font-size:14px; line-height:1.7; }
+.cardArrow { position:absolute; right:35px; bottom:32px; font-size:25px; color:#913337; }
 .levelPage { min-height:100svh; padding:170px max(7vw,30px) 70px; position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; animation:levelReveal .85s cubic-bezier(.2,.75,.2,1) both; }
 .levelContent { position:relative; z-index:3; width:min(700px,55vw); }
 .levelPage .eyebrow { color:var(--accent); }.levelPage .levelTag { display:block; margin-bottom:13px; color:var(--accent); }
@@ -143,7 +141,7 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
 .levelContent { padding:48px; border-left:2px solid var(--accent); background:linear-gradient(110deg,rgba(6,9,11,.94),rgba(9,13,16,.72)); box-shadow:0 28px 90px rgba(0,0,0,.48); backdrop-filter:blur(8px); }
 .levelPage h1 { color:#f0f3f2; text-shadow:3px 3px 0 rgba(0,0,0,.6); }
 .levelPage p,.levelTheme0 p,.levelTheme1 p,.levelTheme2 p { color:#b7c0c1; }
-.academyScene,.scene0,.scene1,.scene2 { inset:0; background-image:linear-gradient(90deg,#080b0d 3%,rgba(8,11,13,.32) 52%,rgba(8,11,13,.4)),linear-gradient(0deg,#080b0d,transparent 42%,rgba(5,7,8,.6)),url('/dota2/assets/images/background.png'); background-size:cover; filter:saturate(.82) contrast(1.12); }
+.academyScene,.scene0,.scene1,.scene2 { inset:0; background-image:linear-gradient(90deg,#080b0d 3%,rgba(8,11,13,.32) 52%,rgba(8,11,13,.4)),linear-gradient(0deg,#080b0d,transparent 42%,rgba(5,7,8,.6)),url('/assets/images/background.png'); background-size:cover; filter:saturate(.82) contrast(1.12); }
 .scene0 { background-position:38% center; --mark:#68b9c6; }
 .scene1 { background-position:62% center; --mark:#cf4a3d; }
 .scene2 { background-position:85% center; --mark:#d3a94f; }
@@ -178,7 +176,7 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
  .coaching { padding:100px 20px; min-height:650px; }.coachingContent { width:100%; }.collage { inset:0 0 0 30%; opacity:.18; }.actions { flex-direction:column; align-items:stretch; width:max-content; }
  .about .collage { inset:0 30% 0 0; }.about .coachingContent { margin-left:0; }
  .modal { padding:42px 28px; }
- .academy { padding:120px 20px 60px; }.academyIntro { margin-bottom:42px; }.academyIntro h1 { font-size:25vw; }.academyIntro p { font-size:14px; }.levelGrid { grid-template-columns:1fr; }.levelCard { min-height:350px; padding:25px; }.levelCardBody { margin-top:32px; }.levelCard h2 { font-size:15vw; }.levelPage { padding:120px 20px 55px; align-items:flex-end; }.levelContent { width:100%; padding:25px 0; }.levelPage h1 { font-size:19vw; }.levelPage p { margin:25px 0; font-size:14px; line-height:1.65; }.academyScene { inset:0; opacity:.58; }.academyScene:after { background:linear-gradient(0deg,var(--page-bg) 6%,transparent 65%),linear-gradient(90deg,var(--page-bg),transparent 70%); }.heroParty { left:25%; height:45%; bottom:23%; }.verticalLabel { display:none; }.rankEmblem { width:90px; }.library { inset:10% -20% 20% 18%; }
+ .academy { padding:120px 20px 50px; }.academyIntro { grid-template-columns:1fr; gap:25px; margin-bottom:42px; }.academyIntro .eyebrow { grid-column:auto; }.academyIntro p { font-size:14px; }.levelGrid { grid-template-columns:1fr; }.levelCard { min-height:320px; border-left:1px solid rgba(29,48,53,.28); border-bottom:1px solid rgba(29,48,53,.28); }.levelCard:last-child { border-bottom:0; }.rune { margin:25px 0; }.levelPage { padding:120px 20px 55px; align-items:flex-end; }.levelContent { width:100%; padding:25px 0; }.levelPage h1 { font-size:19vw; }.levelPage p { margin:25px 0; font-size:14px; line-height:1.65; }.academyScene { inset:0; opacity:.58; }.academyScene:after { background:linear-gradient(0deg,var(--page-bg) 6%,transparent 65%),linear-gradient(90deg,var(--page-bg),transparent 70%); }.heroParty { left:25%; height:45%; bottom:23%; }.verticalLabel { display:none; }.rankEmblem { width:90px; }.library { inset:10% -20% 20% 18%; }
  .footer { padding:30px 20px 14px; grid-template-columns:1fr; gap:22px; }.footerBottom { grid-column:auto; margin-top:4px; gap:12px; flex-direction:column; }.footerCta button { max-width:430px; }
 }
 
