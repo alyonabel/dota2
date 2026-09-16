@@ -20,7 +20,7 @@ const copy = {
     ],
     aboutKicker: '04 / Познакомьтесь с Ardjuna', aboutTitle: 'О НАС', aboutText: 'Тренировки, которые превращают сложные знания об игре в простые практические решения для каждого матча.', back: '← Назад в академию',
     footerText: 'Смотрите глубже. Думайте точнее. Играйте вместе.', footerNav: 'Навигация', footerContact: 'Начните следующий матч по-новому', copyright: 'Все права защищены',
-    soundOn: 'Включить звук видео', soundOff: 'Выключить звук видео', videoPause: 'Поставить видео на паузу', videoPlay: 'Продолжить видео'
+    soundOn: 'Включить звук видео', soundOff: 'Выключить звук видео', volume: 'Громкость видео', videoPause: 'Поставить видео на паузу', videoPlay: 'Продолжить видео'
   },
   en: {
     nav: ['Coaching', 'Academy', 'About'], book: 'Book a session', modalKicker: 'Ready when you are', modalTitle: 'Book a session',
@@ -37,7 +37,7 @@ const copy = {
     ],
     aboutKicker: '04 / Meet Ardjuna', aboutTitle: 'ABOUT', aboutText: 'Coaching that turns complex game knowledge into simple, practical decisions you can use in every match.', back: '← Back to academy',
     footerText: 'See deeper. Think clearer. Play together.', footerNav: 'Navigation', footerContact: 'Approach your next match differently', copyright: 'All rights reserved',
-    soundOn: 'Turn video sound on', soundOff: 'Turn video sound off', videoPause: 'Pause background video', videoPlay: 'Resume background video'
+    soundOn: 'Turn video sound on', soundOff: 'Turn video sound off', volume: 'Video volume', videoPause: 'Pause background video', videoPlay: 'Resume background video'
   }
 }
 
@@ -57,14 +57,22 @@ function Header({ book, language, setLanguage, t }: { book: () => void; language
 
 function Home({ t }: { t: Text }) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
+  const [volume, setVolume] = useState(0)
+  const [lastVolume, setLastVolume] = useState(0.65)
   const [playing, setPlaying] = useState(false)
-  const toggleSound = () => { if (!videoRef.current) return; videoRef.current.muted = !muted; setMuted(!muted) }
+  const muted = volume === 0
+  const updateVolume = (next: number) => {
+    if (!videoRef.current) return
+    videoRef.current.volume = next
+    videoRef.current.muted = next === 0
+    setVolume(next)
+    if (next > 0) setLastVolume(next)
+  }
+  const toggleSound = () => updateVolume(muted ? lastVolume : 0)
   const togglePlayback = () => { if (!videoRef.current) return; if (videoRef.current.paused) void videoRef.current.play(); else videoRef.current.pause() }
   const storyTitle = t.storyTitle.split('|')
-  return <main><section className={styles.hero}><video ref={videoRef} className={styles.heroVideo} autoPlay muted loop playsInline onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.heroContent}><div className={`${styles.heroTitle} ${playing ? styles.heroTitlePlaying : ''}`}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><div className={styles.mediaControls}><button className={`${styles.mediaToggle} ${styles.playbackToggle}`} type="button" onClick={togglePlayback} aria-label={playing ? t.videoPause : t.videoPlay} aria-pressed={!playing}><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.5" /><path className={styles.playGlyph} d="M13 10.8 22 16l-9 5.2Z" /><g className={styles.pauseGlyph}><path d="M12.5 10.5v11" /><path d="M19.5 10.5v11" /></g></svg></button><button className={`${styles.mediaToggle} ${styles.soundToggle} ${muted ? styles.isMuted : ''}`} type="button" onClick={toggleSound} aria-label={muted ? t.soundOn : t.soundOff} aria-pressed={!muted}><svg viewBox="0 0 32 32" aria-hidden="true"><path className={styles.speakerGlyph} d="M6.5 13h4l5.5-4.5v15L10.5 19h-4Z" /><path className={styles.waveGlyph} d="M20 12.2c1.2 1 1.8 2.2 1.8 3.8S21.2 18.8 20 19.8M23 9.5c2 1.8 3 3.9 3 6.5s-1 4.7-3 6.5" /><path className={styles.muteSlash} d="M7.5 7.5l17 17" /><path className={styles.muteSlashAlt} d="M24.5 7.5l-17 17" /></svg></button></div></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2><span>{storyTitle[0]}</span><br /><em>{storyTitle[1]}</em></h2><p>{t.story}</p></div></section></main>
+  return <main><section className={styles.hero}><video ref={videoRef} className={styles.heroVideo} autoPlay muted loop playsInline onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-label="Dota 2 cinematic background"><source src={`${import.meta.env.BASE_URL}assets/videos/dota-web-25.mp4`} type="video/mp4" /></video><div className={styles.heroContent}><div className={`${styles.heroTitle} ${playing ? styles.heroTitlePlaying : ''}`}><h1>{t.hero[0]} <span>{t.hero[1]}</span></h1><p>{t.motto}</p></div></div><div className={styles.mediaControls}><button className={`${styles.mediaToggle} ${styles.playbackToggle}`} type="button" onClick={togglePlayback} aria-label={playing ? t.videoPause : t.videoPlay} aria-pressed={!playing}><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.5" /><path className={styles.playGlyph} d="M13 10.8 22 16l-9 5.2Z" /><g className={styles.pauseGlyph}><path d="M12.5 10.5v11" /><path d="M19.5 10.5v11" /></g></svg></button><div className={styles.volumeControl}><button className={`${styles.mediaToggle} ${styles.soundToggle} ${muted ? styles.isMuted : ''}`} type="button" onClick={toggleSound} aria-label={muted ? t.soundOn : t.soundOff} aria-pressed={!muted}><svg viewBox="0 0 32 32" aria-hidden="true"><path className={styles.speakerGlyph} d="M6.5 13h4l5.5-4.5v15L10.5 19h-4Z" /><path className={styles.waveGlyph} d="M20 12.2c1.2 1 1.8 2.2 1.8 3.8S21.2 18.8 20 19.8M23 9.5c2 1.8 3 3.9 3 6.5s-1 4.7-3 6.5" /><path className={styles.muteSlash} d="M7.5 7.5l17 17" /><path className={styles.muteSlashAlt} d="M24.5 7.5l-17 17" /></svg></button><div className={styles.volumeMixer}><input type="range" min="0" max="1" step="0.01" value={volume} onChange={(event) => updateVolume(Number(event.target.value))} aria-label={t.volume} style={{ '--volume': `${volume * 100}%` } as React.CSSProperties} /><output>{Math.round(volume * 100)}</output></div></div></div></section><section className={styles.story} id="story"><span className={styles.eyebrow}>{t.storyKicker}</span><div className={styles.storyGrid}><h2><span>{storyTitle[0]}</span><br /><em>{storyTitle[1]}</em></h2><p>{t.story}</p></div></section></main>
 }
-
 function Coaching({ book, t }: { book: () => void; t: Text }) { const title = t.coachingTitle.split('|'); return <main><section className={styles.coaching}><div className={styles.collage} aria-hidden="true"><span /><span /><span /><span /><span /></div><div className={styles.coachingContent}><span className={styles.eyebrow}>{t.coachingKicker}</span><h2>{title[0]}<br /><em>{title[1]}</em></h2><p>{t.coachingText}</p><div className={styles.actions}><button className={styles.primary} onClick={book}>{t.book}</button><Link className={styles.secondary} to="/academy">{t.learn} <span>→</span></Link></div></div></section></main> }
 
 function Academy({ t }: { t: Text }) {
