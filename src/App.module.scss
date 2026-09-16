@@ -95,7 +95,7 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
 .inner>.primary { margin:30px 20px 30px 0; }.inner>a { font:600 13px 'Rajdhani'; letter-spacing:.12em; text-transform:uppercase; color:#aab8bc; }
 .academy { min-height:100vh; padding:134px 5.5vw 68px; color:#171d20; background:#cbd1cf; position:relative; isolation:isolate; overflow:hidden; }
 .academy:before,.academy:after { content:''; position:absolute; z-index:-1; pointer-events:none; }
-.academy:before { inset:0 0 auto; height:465px; background:#171d20; clip-path:polygon(0 0,100% 0,100% 72%,74% 88%,46% 76%,0 100%); }
+.academy:before { inset:0 0 auto; height:465px; background-image:radial-gradient(ellipse at 74% 28%,rgba(78,90,119,.38),transparent 34%),radial-gradient(circle,rgba(239,242,239,.72) 0 1px,transparent 1.4px),radial-gradient(circle,rgba(183,194,205,.42) 0 .7px,transparent 1.2px),linear-gradient(115deg,#10141a,#1a202a 54%,#11161c); background-size:100% 100%,89px 89px,137px 137px,100% 100%; background-position:0 0,0 0,24px 17px,0 0; clip-path:polygon(0 0,100% 0,100% 72%,74% 88%,46% 76%,0 100%); animation:academySpace 34s linear infinite; }
 .academy:after { width:52vw; height:1px; right:-5vw; top:365px; background:rgba(164,56,56,.72); transform:rotate(-8deg); transform-origin:right; box-shadow:0 72px 0 rgba(23,29,32,.16),0 76px 0 rgba(255,255,255,.22); }
 .academyMap { position:absolute; z-index:-1; inset:92px 3vw auto; height:69%; color:#c4cbc8; font:600 9px 'Space Grotesk',sans-serif; letter-spacing:.18em; opacity:.46; pointer-events:none; }
 .academyMap:before { content:''; position:absolute; top:13%; right:9%; width:118px; height:118px; border:1px solid currentColor; border-radius:50%; box-shadow:inset 0 0 0 28px rgba(255,255,255,.035),0 0 0 26px rgba(255,255,255,.025); }
@@ -130,6 +130,11 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
 .levelHelp strong { color:#171d20; font:600 12px 'Space Grotesk',sans-serif; }
 .levelHelp:hover { color:#171d20; border-color:#8c908d; }
 .levelHelp:focus-visible { outline:2px solid #a43838; outline-offset:3px; }
+@keyframes academySpace {
+  0% { background-position:0 0,0 0,24px 17px,0 0; }
+  50% { background-position:1.5vw .5vw,45px 45px,-44px 86px,0 0; }
+  100% { background-position:0 0,89px 89px,-113px 154px,0 0; }
+}
 @media(min-width:1051px) {
  .levelCard:nth-child(1) { margin-top:30px; }
  .levelCard:nth-child(2) { margin-top:15px; }
@@ -222,4 +227,4 @@ nav>a:hover:after,nav>a[aria-current='page']:after { transform:scaleX(1); }
  .footer { padding:30px 20px 14px; grid-template-columns:1fr; gap:22px; }.footerBottom { grid-column:auto; margin-top:4px; gap:12px; flex-direction:column; }.footerCta button { max-width:430px; }
 }
 
-@media(prefers-reduced-motion:reduce) { .levelPage,.heroFigure,.heroTitlePlaying,::view-transition-old(root),::view-transition-new(root) { animation:none; } .levelCard,.levelCard:after,.levelMeta,.levelCard p,.cardArrow { transition:none; } }
+@media(prefers-reduced-motion:reduce) { .academy:before,.levelPage,.heroFigure,.heroTitlePlaying,::view-transition-old(root),::view-transition-new(root) { animation:none; } .levelCard,.levelCard:after,.levelMeta,.levelCard p,.cardArrow { transition:none; } }
